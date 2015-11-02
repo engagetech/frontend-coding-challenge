@@ -1,0 +1,10 @@
+node_modules
+build
+static
+/*.html
+/*.json
+*.iml
+target
+.idea
+.DS_Store
+dependency-reduced-pom.xml

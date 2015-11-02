@@ -1,0 +1,88 @@
+/******************************************************************************************
+
+Utility mix-ins
+
+******************************************************************************************/
+
+.indentedBox(@bottom-margin: 50px) {
+	margin: 0 0 @bottom-margin 0;
+	clear: left;
+
+	@media (max-width: @tablet-screen-width) {
+		margin-left: 10px;
+		clear: left;
+	}
+
+	@media (max-width: @small-tablet-screen-width) {
+		margin: 0 0 @bottom-margin;
+	}
+
+	@media (max-width: @max-mobile-width) {
+		margin-left: 5px;
+	}
+}
+
+.columnWidth(@column, @masterwidth, @pixelwidth) {
+	&:nth-child(@{column}) {
+		width: 100% / @masterwidth * @pixelwidth;
+	}
+}
+
+.animation(@name, @duration: 300ms, @timing-function: ease, @delay: 0, @iteration-count: 1, @direction: normal, @fill-mode: forwards, @play-state: running) {
+	-webkit-animation-name: @name;
+	-webkit-animation-duration: @duration;
+	-webkit-animation-timing-function: @timing-function;
+	-webkit-animation-delay: @delay;
+	-webkit-animation-iteration-count: @iteration-count;
+	-webkit-animation-direction: @direction;
+	-webkit-animation-fill-mode: @fill-mode;
+	-webkit-animation-play-state: @play-state;
+	-ms-animation-name: @name;
+	-ms-animation-duration: @duration;
+	-ms-animation-timing-function: @timing-function;
+	-ms-animation-delay: @delay;
+	-ms-animation-iteration-count: @iteration-count;
+	-ms-animation-direction: @direction;
+	-ms-animation-fill-mode: @fill-mode;
+	-ms-animation-play-state: @play-state;
+	-moz-animation: @name @duration @timing-function @delay @iteration-count @direction @fill-mode @play-state;
+	animation: @name @duration @timing-function @delay @iteration-count @direction @fill-mode @play-state;
+	-webkit-transition-property: font-size, opacity;
+	-moz-transition-property: font-size, opacity;
+	-ms-transition-property: font-size, opacity;
+	transition-property: font-size, opacity;
+	-webkit-transform: translate3d(0,0,0);
+	-moz-transform: translate3d(0,0,0);
+	-ms-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}
+
+.keyframes(@name, @frames) {
+	@-webkit-keyframes @name { @frames(); }
+	@-moz-keyframes @name { @frames(); }
+	@-ms-keyframes @name { @frames(); }
+	@-o-keyframes @name { @frames(); }
+	@keyframes @name { @frames(); }
+}
+
+.transition(@transition) {
+	-webkit-transition: @transition;
+	-moz-transition: @transition;
+	-ms-transition: @transition;
+	-o-transition: @transition;
+}
+
+.linear-gradient(@direction, @startcolor, @endcolor, @x, @y) {
+	background: -webkit-linear-gradient(@direction, @startcolor, @endcolor) @x @y;
+	background: -moz-linear-gradient(@direction, @startcolor, @endcolor) @x @y;
+	background: -ms-linear-gradient(@direction, @startcolor, @endcolor) @x @y;
+	background: -o-linear-gradient(@direction, @startcolor, @endcolor) @x @y;
+	background: linear-gradient(@direction, @startcolor, @endcolor) @x @y;
+}
+
+.grid(@i, @step, @prefix: col) when (@i >= 0) {
+	.grid((@i - 1), @step, @prefix);
+	&.@{prefix}-@{i} {
+		width: (@i * @step);
+	}
+}

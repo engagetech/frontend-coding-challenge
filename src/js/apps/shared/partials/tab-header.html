@@ -1,0 +1,17 @@
+<div ng-controller="ctrlViewNavigation" class="tab-bar mobile-border-top-arrow" id="tab-menu">
+	<ul class="tab-list backward desktop">
+		<li ng-repeat="tab in $navigation.get().backward" class="text-link clickable" ng-click="clickTab(tab)"><a><i ng-if="tab.icon" class="icon crop-circle" ng-class="tab.icon"></i>{{ tab.title }}</a></li>
+	</ul>
+	<ul class="tab-list forward desktop">
+		<li ng-repeat="tab in $navigation.get().forward" class="text-link clickable" ng-click="clickTab(tab)" ng-class=" { current: tab.selected }"><a ng-href="#/{{ tab.app }}">{{ tab.title }}</a></li>
+		<li ng-if="$navigation.get().action" class="divider"></li>
+		<li ng-repeat="action in $navigation.get().actions" ng-click="clickTab(action)" class="action clickable"><i ng-if="action.icon" class="icon crop-circle" ng-class="action.icon"></i> {{ action.title }}</li>
+	</ul>
+	<ul class="tab-list links mobile" ng-class="getLinksClass()">
+		<li ng-repeat="tab in $navigation.get().forward" class="text-link clickable" ng-click="clickTab(tab)" ng-class="{ current: tab.active }"><a ng-href="#/{{ tab.app }}">{{ tab.title }}</a></li>
+	</ul>
+	<ul class="tab-list actions mobile">
+		<li ng-repeat="tab in $navigation.get().backward" class="text-link clickable" ng-click="clickTab(tab)"><a><i ng-if="tab.icon" class="icon crop-circle" ng-class="tab.icon"></i>{{ tab.title }}</a></li>
+		<li ng-repeat="action in $navigation.get().actions" ng-click="clickTab(action)" class="action clickable"><i ng-if="action.icon" class="icon crop-circle" ng-class="action.icon"></i> {{ action.title }}</li>
+	</ul>
+</div>

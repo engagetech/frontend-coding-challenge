@@ -1,0 +1,27 @@
+<div ng-controller="ctrlSubNavigation">
+	<div at-slidein ng-controller="ctrlSubNavigation" at-min-scroll="minShowOffset()" at-slide-speed="250" class="navigation-bar fixed-navigation-bar">
+		<div slide-direction="up" slide-speed="250" class="navigation-container">
+			<h1>
+				{{ $navigation.getCurrentSection().mainheading }}
+			</h1>
+			<div class="icon-bar">
+				<div ng-repeat="section in contentSections" ng-click="scrollToSection($index)" class="text-link clickable">{{ section.text }}</div>
+				<div ng-if="contentSections.length" class="icon clickable" at-clicktoggle="#section-menu" at-hide-on="scroll,click">
+					<i class="icon hamburger white"></i>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="section-menu" class="section-popup">
+		<ul>
+			<li ng-repeat="section in contentSections" ng-click="scrollToSection($index)" class="clickable">{{ section.text }}</li>
+		</ul>
+	</div>
+	<div at-slidein ng-controller="ctrlSubNavigation" at-min-scroll="minShowOffset()" at-slide-direction="up" at-slide-speed="250" class="navigation-bar fixed-navigation-bar bottom">
+		<div class="navigation-container">
+			<div class="icon clickable" ng-click="scrollToTop()">
+				<i class="icon home"></i>
+			</div>
+		</div>
+	</div>
+</div>

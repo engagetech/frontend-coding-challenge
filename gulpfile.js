@@ -261,7 +261,6 @@ gulp.task("css", function() {
 				.pipe(sourcemaps.init({ loadMaps: true, debug: true }))
 				.pipe(less({
 					plugins: [
-						cleancss
 					]
 				}))
 				.pipe(rename(basename + ".main.min.css"))

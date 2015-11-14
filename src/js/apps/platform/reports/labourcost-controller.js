@@ -20,9 +20,16 @@ app.controller("ctrlLabourCost", ["$rootScope", "$scope", "$timeout", "restalche
 	rest.api = $rootScope.config.api.labourstats;
 	
 	rest.at(rest.api.costs).get().then(function(costdata) {
+    $scope.data = costdata[0];
+    updateProviders();
 	});
 
+  function updateProviders() {
+    $scope.providers = ($scope.sortField === 'name') ? $scope.data.providers : $scope.data.providers.concat($scope.data.directContractors);
+  }
+
   init();
+
   function init() {
     $scope.reverseSort = false;
     $scope.sortField = 'name';
@@ -41,5 +48,7 @@ app.controller("ctrlLabourCost", ["$rootScope", "$scope", "$timeout", "restalche
   $scope.headerClickHandler = function (header) {
     $scope.reverseSort = !$scope.reverseSort;
     $scope.sortField = header.sortBy;
+    updateProviders();
   };
+
 }]);

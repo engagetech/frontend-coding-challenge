@@ -7,15 +7,12 @@
         {{header.label}}
       </div>
 		</div>
-		
-    <div class="body-row" ng-repeat="provider in providers">
-      <div>{{provider.name}}</div>
-      <div>{{provider.workerCount}}</div>
-      <div>{{provider.complianceStats | percentageFilter:0}}</div>
-      <div>{{provider.grossPayTotal*0.01 | currencyFilter}}</div>
-      <div>{{provider.payRollAdminTotal*0.01 | currencyFilter}}</div>
-      <div>{{provider.labourCostTotal*0.01 | currencyFilter}}</div>
-      <div>{{provider.rebatesTotal | percentageFilter:1 }}</div>
+
+    <div provider-row="data.directContractors[0]" class="sub-table single-line-table"
+         ng-if="showDirectContractorsLine">
+    </div>
+
+    <div ng-repeat="provider in providers" provider-row="provider">
     </div>
 	</div>
 </div>

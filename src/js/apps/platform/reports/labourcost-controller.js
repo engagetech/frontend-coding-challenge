@@ -21,18 +21,11 @@ app.controller("ctrlLabourCost", ["$rootScope", "$scope", "$timeout", "restalche
 	
 	rest.at(rest.api.costs).get().then(function(costdata) {
     $scope.data = costdata[0];
-    updateProviders();
+    $scope.headerClickHandler({sortBy: 'name'});
 	});
 
   function updateProviders() {
     $scope.providers = ($scope.sortField === 'name') ? $scope.data.providers : $scope.data.providers.concat($scope.data.directContractors);
-  }
-
-  init();
-
-  function init() {
-    $scope.reverseSort = false;
-    $scope.sortField = 'name';
   }
 
   $scope.columnsHeaders = [
@@ -48,6 +41,7 @@ app.controller("ctrlLabourCost", ["$rootScope", "$scope", "$timeout", "restalche
   $scope.headerClickHandler = function (header) {
     $scope.reverseSort = !$scope.reverseSort;
     $scope.sortField = header.sortBy;
+    $scope.showDirectContractorsLine = $scope.sortField === 'name';
     updateProviders();
   };
 
@@ -66,6 +60,25 @@ app.controller("ctrlLabourCost", ["$rootScope", "$scope", "$timeout", "restalche
 .filter('currencyFilter', function ($filter) {
   return function (value) {
     return value ? $filter('currency')(value, '', 0) : '-';
+  }
+})
+
+.directive('providerRow', function () {
+  return{
+    replace:true,
+    scope: {
+      providerRow: '='
+    },
+    template: '<div class="body-row">' +
+                '<div>{{providerRow.name}}</div>'+
+                '<div>{{providerRow.workerCount}}</div>'+
+                '<div>{{providerRow.complianceStats | percentageFilter:0}}</div>'+
+                '<div>{{providerRow.grossPayTotal*0.01 | currencyFilter}}</div>'+
+                '<div>{{providerRow.payRollAdminTotal*0.01 | currencyFilter}}</div>'+
+                '<div>{{providerRow.labourCostTotal*0.01 | currencyFilter}}</div>'+
+                '<div>{{providerRow.rebatesTotal | percentageFilter:1 }}</div>'+
+              '</div>'
+
   }
 });
 

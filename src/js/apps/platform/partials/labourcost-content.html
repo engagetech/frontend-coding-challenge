@@ -8,14 +8,15 @@
       </div>
 		</div>
 
-    <div provider-row="data.directContractors[0]" class="sub-table single-line-table"
-         ng-if="showDirectContractorsLine">
-    </div>
+    <provider-row class="sub-table single-line-table" ng-if="showDirectContractorsLine"
+                  provider="data.directContractors[0]" sort-field="sortField">
+    </provider-row>
 
-    <div ng-repeat="provider in providers" provider-row="provider">
-    </div>
+    <provider-row ng-repeat="prov in providers" provider="prov" sort-field="sortField">
+    </provider-row>
 
-    <div provider-row="data.total[0]" class="sub-table single-line-table">
-    </div>
+    <provider-row class="sub-table single-line-table"
+                  provider="data.total[0]" sort-field="sortField">
+    </provider-row>
 	</div>
 </div>

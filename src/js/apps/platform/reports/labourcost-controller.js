@@ -24,11 +24,11 @@ app.controller("ctrlLabourCost", ["$rootScope", "$scope", "$timeout", "restalche
     $scope.headerClickHandler($scope.columnsHeaders[0], 0);
 	});
 
-
-  var sortingIndex = 0, sortField = 'name', reverseSort = true;
+  $scope.sortField = 'name';
+  var sortingIndex = 0, reverseSort = true;
 
   function updateProviders() {
-    var providers = (sortField === 'name') ? $scope.data.providers : $scope.data.providers.concat($scope.data.directContractors);
+    var providers = ($scope.sortField === 'name') ? $scope.data.providers : $scope.data.providers.concat($scope.data.directContractors);
     $scope.providers = $filter('orderBy')(providers, providerSortFunction, reverseSort);
   }
 
@@ -45,16 +45,15 @@ app.controller("ctrlLabourCost", ["$rootScope", "$scope", "$timeout", "restalche
   $scope.headerClickHandler = function (header, newIndex) {
     if(newIndex !== sortingIndex) {
       header.isSorting = true;
-      header.cssClass = '';
       reverseSort = header.reverse;
-      sortField = header.sortBy;
+      $scope.sortField = header.sortBy;
       $scope.columnsHeaders[sortingIndex].isSorting = false;
       sortingIndex = newIndex;
     } else {
       reverseSort = !reverseSort;
     }
     header.cssClass = (reverseSort) ? '' : 'reversed-sort';
-    $scope.showDirectContractorsLine = sortField === 'name';
+    $scope.showDirectContractorsLine = $scope.sortField === 'name';
     updateProviders();
   };
 
@@ -74,7 +73,7 @@ app.controller("ctrlLabourCost", ["$rootScope", "$scope", "$timeout", "restalche
       }
       return property;
     }
-    return evalItem(provider, sortField);
+    return evalItem(provider, $scope.sortField);
   }
 }])
 
@@ -98,16 +97,17 @@ app.controller("ctrlLabourCost", ["$rootScope", "$scope", "$timeout", "restalche
   return{
     replace:true,
     scope: {
-      providerRow: '='
+      provider: '=',
+      sortField: '='
     },
     template: '<div class="body-row">' +
-                '<div>{{providerRow.name}}</div>'+
-                '<div>{{providerRow.workerCount}}</div>'+
-                '<div>{{providerRow.complianceStats | percentageFilter:0:"Total"}}</div>'+
-                '<div>{{providerRow.grossPayTotal*0.01 | currencyFilter}}</div>'+
-                '<div>{{providerRow.payRollAdminTotal*0.01 | currencyFilter}}</div>'+
-                '<div>{{providerRow.labourCostTotal*0.01 | currencyFilter}}</div>'+
-                '<div>{{providerRow.rebatesTotal | percentageFilter:1 }}</div>'+
+                '<div ng-class="{\'stronger\': sortField==\'name\'}">{{provider.name}}</div>'+
+                '<div ng-class="{\'stronger\': sortField==\'workerCount\'}">{{provider.workerCount}}</div>'+
+                '<div ng-class="{\'stronger\': sortField==\'complianceStats.Total\'}">{{provider.complianceStats | percentageFilter:0:"Total"}}</div>'+
+                '<div ng-class="{\'stronger\': sortField==\'grossPayTotal\'}">{{provider.grossPayTotal*0.01 | currencyFilter}}</div>'+
+                '<div ng-class="{\'stronger\': sortField==\'payRollAdminTotal\'}">{{provider.payRollAdminTotal*0.01 | currencyFilter}}</div>'+
+                '<div ng-class="{\'stronger\': sortField==\'labourCostTotal\'}">{{provider.labourCostTotal*0.01 | currencyFilter}}</div>'+
+                '<div ng-class="{\'stronger\': sortField==\'rebatesTotal\'}">{{provider.rebatesTotal | percentageFilter:1 }}</div>'+
               '</div>'
 
   }

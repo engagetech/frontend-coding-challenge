@@ -541,12 +541,24 @@ div.list-table {
 		}
 		
 		&.body-row {
-			font-weight: @weight-medium;
+            font-weight: @weight-medium;
 			background-color: @paper-background-color;
 
 			&.highlight {
 				background-color: @pale-bright-grey-color;
 			}
+
+            &.animating {
+              @keyframes fade {
+                0%   {opacity: 1;}
+                25%  {opacity: 0.5;}
+                50%  {opacity: 0;}
+                75% {opacity: 0.5;}
+                100% {opacity: 1;}
+              };
+              animation-name: fade;
+              animation-duration: 1s;
+            }
 
 			.sub-row {
 				display: block;

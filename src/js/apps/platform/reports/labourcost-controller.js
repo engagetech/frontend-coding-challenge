@@ -43,18 +43,24 @@ app.controller("ctrlLabourCost", ["$rootScope", "$scope", "$timeout", "restalche
   ];
 
   $scope.headerClickHandler = function (header, newIndex) {
-    if(newIndex !== sortingIndex) {
-      header.isSorting = true;
-      reverseSort = header.reverse;
-      $scope.sortField = header.sortBy;
-      $scope.columnsHeaders[sortingIndex].isSorting = false;
-      sortingIndex = newIndex;
-    } else {
-      reverseSort = !reverseSort;
-    }
-    header.cssClass = (reverseSort) ? '' : 'reversed-sort';
-    $scope.showDirectContractorsLine = $scope.sortField === 'name';
-    updateProviders();
+    $scope.inAnimation = true;
+    $timeout(function () {
+      if(newIndex !== sortingIndex) {
+        header.isSorting = true;
+        reverseSort = header.reverse;
+        $scope.sortField = header.sortBy;
+        $scope.columnsHeaders[sortingIndex].isSorting = false;
+        sortingIndex = newIndex;
+      } else {
+        reverseSort = !reverseSort;
+      }
+      header.cssClass = (reverseSort) ? '' : 'reversed-sort';
+      $scope.showDirectContractorsLine = $scope.sortField === 'name';
+      updateProviders();
+      $scope.inAnimation = false;
+    }, 400);
+
+
   };
 
   function providerSortFunction (provider) {

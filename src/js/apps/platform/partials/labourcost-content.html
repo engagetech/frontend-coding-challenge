@@ -8,11 +8,11 @@
       </div>
 		</div>
 
-    <provider-row class="sub-table single-line-table" ng-if="showDirectContractorsLine"
+    <provider-row class="sub-table single-line-table" ng-class="{'animating': inAnimation}" ng-if="showDirectContractorsLine"
                   provider="data.directContractors[0]" sort-field="sortField">
     </provider-row>
 
-    <provider-row ng-repeat="prov in providers" provider="prov" sort-field="sortField">
+    <provider-row ng-repeat="prov in providers"  ng-class="{'animating': inAnimation}" provider="prov" sort-field="sortField">
     </provider-row>
 
     <provider-row class="sub-table single-line-table"

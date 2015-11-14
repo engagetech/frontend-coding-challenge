@@ -3,8 +3,8 @@
 	
 	<div class="list-table">
 		<div class="header-row multi-line">
-      <div ng-repeat="header in columnsHeaders" ng-class="header.cssClass" ng-click="headerClickHandler(header)">
-        {{header.label}}
+      <div ng-repeat="header in columnsHeaders" ng-class="header.cssClass" ng-click="headerClickHandler(header, $index)">
+        {{header.label}}<span class="icon" ng-if="header.isSorting">^</span>
       </div>
 		</div>
 

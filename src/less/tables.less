@@ -516,14 +516,23 @@ div.list-table {
 			.icon {
 				margin-top: -4px;
 				color: @main-theme-color;
-				width: 18px;
 				height: 18px;
 				line-height: 20px;
 				font-size: 20px;
 				vertical-align: middle;
-				
+				position: absolute;
 				font-size: @default-font-size + 4px;
+                transform: rotate(180deg);
+                -webkit-transform: rotate(180deg);
+                -moz-transform: rotate(180deg);
 			}
+            .reversed-sort {
+              .icon {
+                transform: rotate(0deg);
+                -webkit-transform: rotate(0deg);
+                -moz-transform: rotate(0deg);
+              }
+            }
 			
 			&.multi-line {
 				line-height: @default-font-size;

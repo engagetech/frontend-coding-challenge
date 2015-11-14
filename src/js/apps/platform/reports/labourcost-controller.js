@@ -51,4 +51,21 @@ app.controller("ctrlLabourCost", ["$rootScope", "$scope", "$timeout", "restalche
     updateProviders();
   };
 
-}]);
+}])
+
+.filter('percentageFilter', function () {
+  return function (value, count) {
+    var toReturn = (value) ? value : 0;
+    if (value && value.hasOwnProperty('Total')) { // checking for compliance stats
+      toReturn = (value.Total) ? value.Total : 0;
+    }
+    return parseFloat(toReturn.toFixed(count)) + '%';
+  }
+})
+
+.filter('currencyFilter', function ($filter) {
+  return function (value) {
+    return value ? $filter('currency')(value, '', 0) : '-';
+  }
+});
+

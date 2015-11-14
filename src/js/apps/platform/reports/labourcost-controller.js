@@ -21,4 +21,25 @@ app.controller("ctrlLabourCost", ["$rootScope", "$scope", "$timeout", "restalche
 	
 	rest.at(rest.api.costs).get().then(function(costdata) {
 	});
+
+  init();
+  function init() {
+    $scope.reverseSort = false;
+    $scope.sortField = 'name';
+  }
+
+  $scope.columnsHeaders = [
+    {label: 'payroll provider', sortBy: 'name', cssClass:''},
+    {label: 'worker', sortBy: 'workerCount', cssClass:''},
+    {label: 'compliance score', sortBy: 'complianceStats', cssClass:''},
+    {label: 'gross pay (£)', sortBy: 'grossPayTotal', cssClass:''},
+    {label: 'payroll admin (£)', sortBy: 'payRollAdminTotal', cssClass:''},
+    {label: 'labour cost (£)', sortBy: 'labourCostTotal', cssClass:''},
+    {label: 'work force', sortBy: 'rebatesTotal', cssClass:''}
+  ];
+
+  $scope.headerClickHandler = function (header) {
+    $scope.reverseSort = !$scope.reverseSort;
+    $scope.sortField = header.sortBy;
+  };
 }]);

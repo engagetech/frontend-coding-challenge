@@ -2,8 +2,10 @@
 	<h2>Labour cost report</h2>
 	
 	<div class="list-table">
-		<div class="header-row">
-			<div class="col-25">Example heading</div>
+		<div class="header-row multi-line">
+      <div ng-repeat="header in columnsHeaders" ng-class="header.cssClass" ng-click="headerClickHandler(header)">
+        {{header.label}}
+      </div>
 		</div>
 		
 		<div class="body-row">

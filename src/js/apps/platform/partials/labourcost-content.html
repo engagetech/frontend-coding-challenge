@@ -3,19 +3,19 @@
 	
 	<div class="list-table">
 		<div class="header-row multi-line">
-      <div ng-repeat="header in columnsHeaders" ng-class="header.cssClass" ng-click="headerClickHandler(header, $index)">
-        {{header.label}}<span class="icon" ng-if="header.isSorting">^</span>
+      <div ng-repeat="header in columnsHeaders" ng-class="header.cssStyles.concat(header.reverseClass)" ng-click="headerClickHandler(header, $index)">
+        <div class="label-container">{{header.label}}</div><div class="icon" ng-if="header.isSorting">^</div>
       </div>
 		</div>
 
-    <provider-row class="sub-table single-line-table" ng-class="{'animating': inAnimation}" ng-if="showDirectContractorsLine"
+    <provider-row class="sub-table single-line-table bottom-margined-row" ng-class="{'animating': inAnimation}" ng-if="showDirectContractorsLine"
                   provider="data.directContractors[0]" sort-field="sortField">
     </provider-row>
 
     <provider-row ng-repeat="prov in providers"  ng-class="{'animating': inAnimation}" provider="prov" sort-field="sortField">
     </provider-row>
 
-    <provider-row class="sub-table single-line-table"
+    <provider-row class="sub-table single-line-table top-margined-row total-row"
                   provider="data.total[0]" sort-field="sortField">
     </provider-row>
 	</div>

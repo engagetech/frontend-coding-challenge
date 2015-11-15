@@ -313,10 +313,13 @@ div.list-table {
 	overflow-y: hidden;
 	width: 100%;
 	
-	border-bottom: 1px solid @light-pale-grey-color;
-
+	.bottom-margined-row {
+      margin-bottom: 30px;
+    }
+    .top-margined-row {
+      margin-top: 30px;
+    }
 	& > div {
-		border-top: 1px solid @light-pale-grey-color;
 		box-sizing: border-box;
 		
 		&:nth-child(1), &:nth-child(2) {
@@ -326,33 +329,54 @@ div.list-table {
 		& > div {
 			width: 120px;
 			color: @mid-light-grey-color;
-			
+            overflow: hidden;
+            text-overflow: ellipsis;
 			vertical-align: top;
 			
 			display: inline-block;
-			
+			position: relative;
 			padding: 10px 5px;
 			box-sizing: border-box;
+            height: 100%;
 			
 			&.padded {
 				padding-right: 15px;
 			}
-			
-			&.stronger {
+
+            &.weaker {
+              color: @light-grey-color;
+            }
+
+            &.stronger {
 				color: @dark-deep-grey-color;
 			}
-			
+
 			&.bigger {
 				font-size: @default-font-size;
 			}
 
 			&.figures {
 				text-align: right;
+                position: relative;
 				
 				&.padded {
 					padding-right: 0;
 					padding-left: 15px;
 				}
+                .label-container {
+                    float: right;
+                    margin-right: 10px;
+                }
+                .icon {
+                    left: 100%;
+                    right: 0px;
+                }
+                &.reversed-sort {
+                    .icon {
+                      left: 0px;
+                      right: 0px;
+                    }
+                }
 			}
 			
 			&.dates {
@@ -363,19 +387,53 @@ div.list-table {
 			&.centered {
 				text-align: center;
 			}
-			
-			&.actions {
+
+         	&.actions {
 				text-align: center;
 			}
 			
 			&.counters {
 				text-align: left;
 			}
-			
+
+            &.number {
+                font-size: 24px;
+                font-weight: @weight-light;
+            }
+
+			&.large {
+                width: 20%;
+            }
+
+            &.medium {
+                width: 15%;
+                &.special-icon {
+                    .icon {
+                      top: 27px;
+                      left: 55px;
+                    }
+                }
+            }
+
+            &.small {
+                width: 10%;
+            }
 			.expand {
 				float: right;
 			}
-			
+
+			&.last-column {
+                margin-left: 10px;
+                width: 8%;
+                .label-container {
+                  position: relative;
+                  left: 10px;
+                }
+                .icon {
+                  left: 60px;
+                }
+            }
+
 			&.theme {
 				color: @main-theme-color;
 			}
@@ -453,8 +511,12 @@ div.list-table {
 			& .details {
 				border-bottom: 1px dotted @mid-grey-color;
 			}
-			
-			.checkbox.circle {
+
+            &.divider {
+              border-left: 1px solid @light-pale-grey-color;
+            }
+
+          	.checkbox.circle {
 				height: 15px;
 				
 				&:before {
@@ -512,7 +574,9 @@ div.list-table {
 
 		&.header-row {
 			line-height: (@default-font-size - 1) * 2;
-			
+			background-color: #FFFFFF;
+            color: @pale-bright-grey-color;
+            margin-bottom: 30px;
 			.icon {
 				margin-top: -4px;
 				color: @main-theme-color;
@@ -521,6 +585,8 @@ div.list-table {
 				font-size: 20px;
 				vertical-align: middle;
 				position: absolute;
+                left: 65px;
+                top: 15px;
 				font-size: @default-font-size + 4px;
                 transform: rotate(180deg);
                 -webkit-transform: rotate(180deg);
@@ -537,7 +603,7 @@ div.list-table {
 			&.multi-line {
 				line-height: @default-font-size;
 				height: 47px;
-			}
+            }
 		}
 		
 		&.body-row {
@@ -558,6 +624,11 @@ div.list-table {
               };
               animation-name: fade;
               animation-duration: 1s;
+            }
+
+            &.multi-line {
+              line-height: @default-font-size;
+              height: 47px;
             }
 
 			.sub-row {
@@ -619,8 +690,8 @@ div.list-table {
 	
 	.header-row {
 		background-color: @pale-grey-color;
-		padding: 0 20px 0;
 		height: 43px;
+        padding: 0 20px 0;
 		
 		@media (max-width: @tablet-screen-width) {
 			padding: 0 5px 0;
@@ -629,10 +700,10 @@ div.list-table {
 		> div {
 			text-align: left;
 			text-transform: uppercase;
-			color: @mid-light-grey-color;
+			color: @light-pale-grey-color;
 			font-size: @default-font-size - 2px;
 			font-weight: @weight-book;
-			
+			cursor: pointer;
 			&.figures {
 				position: relative;
 				
@@ -641,6 +712,9 @@ div.list-table {
 					top: 16px;
 				}
 			}
+            .label-container {
+              max-width: 60px;
+            }
 		}
 	}
 	
@@ -739,6 +813,17 @@ div.list-table {
 			padding-left: 0px;
 		}
 	}
+
+    .total-row {
+      .label-column {
+        text-align: right;
+        padding-right: 20px;
+        color: #000;
+      }
+      .percentage {
+        color: #000;
+      }
+    }
 }
 
 table.block-table {
@@ -852,7 +937,6 @@ table.block-table {
 		
 		.number {
 			font-size: 44px;
-			
 			span {
 				font-size: @default-font-size + 10px;
 				font-weight: @weight-book;

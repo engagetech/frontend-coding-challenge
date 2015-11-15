@@ -33,13 +33,13 @@ app.controller("ctrlLabourCost", ["$rootScope", "$scope", "$timeout", "restalche
   }
 
   $scope.columnsHeaders = [
-    {label: 'payroll provider', sortBy: 'name', cssClass:'', isSorting:true, reverse:false},
-    {label: 'worker', sortBy: 'workerCount', cssClass:'', isSorting:false, reverse:true},
-    {label: 'compliance score', sortBy: 'complianceStats.Total', cssClass:'', isSorting:false, reverse:true},
-    {label: 'gross pay (£)', sortBy: 'grossPayTotal', cssClass:'', isSorting:false, reverse:true},
-    {label: 'payroll admin (£)', sortBy: 'payRollAdminTotal', cssClass:'', isSorting:false, reverse:true},
-    {label: 'labour cost (£)', sortBy: 'labourCostTotal', cssClass:'', isSorting:false, reverse:true},
-    {label: 'work force', sortBy: 'rebatesTotal', cssClass:'', isSorting:false, reverse:true}
+    {label: 'payroll provider', sortBy: 'name', cssStyles:['large'], isSorting:true, reverse:false},
+    {label: 'worker', sortBy: 'workerCount', cssStyles:['small'], isSorting:false, reverse:true},
+    {label: 'compliance score', sortBy: 'complianceStats.Total', cssStyles:['medium', 'special-icon'], isSorting:false, reverse:true},
+    {label: 'gross pay (£)', sortBy: 'grossPayTotal', cssStyles:['medium', 'figures'], isSorting:false, reverse:true},
+    {label: 'payroll admin (£)', sortBy: 'payRollAdminTotal', cssStyles:['medium', 'figures'], isSorting:false, reverse:true},
+    {label: 'labour cost (£)', sortBy: 'labourCostTotal', cssStyles:['medium', 'figures'], isSorting:false, reverse:true},
+    {label: 'work force', sortBy: 'rebatesTotal', cssStyles:['small', 'last-column'], isSorting:false, reverse:true}
   ];
 
   $scope.headerClickHandler = function (header, newIndex) {
@@ -54,7 +54,7 @@ app.controller("ctrlLabourCost", ["$rootScope", "$scope", "$timeout", "restalche
       } else {
         reverseSort = !reverseSort;
       }
-      header.cssClass = (reverseSort) ? '' : 'reversed-sort';
+      header.reverseClass = (reverseSort) ? '' : 'reversed-sort';
       $scope.showDirectContractorsLine = $scope.sortField === 'name';
       updateProviders();
       $scope.inAnimation = false;
@@ -106,14 +106,14 @@ app.controller("ctrlLabourCost", ["$rootScope", "$scope", "$timeout", "restalche
       provider: '=',
       sortField: '='
     },
-    template: '<div class="body-row">' +
-                '<div ng-class="{\'stronger\': sortField==\'name\'}">{{provider.name}}</div>'+
-                '<div ng-class="{\'stronger\': sortField==\'workerCount\'}">{{provider.workerCount}}</div>'+
-                '<div ng-class="{\'stronger\': sortField==\'complianceStats.Total\'}">{{provider.complianceStats | percentageFilter:0:"Total"}}</div>'+
-                '<div ng-class="{\'stronger\': sortField==\'grossPayTotal\'}">{{provider.grossPayTotal*0.01 | currencyFilter}}</div>'+
-                '<div ng-class="{\'stronger\': sortField==\'payRollAdminTotal\'}">{{provider.payRollAdminTotal*0.01 | currencyFilter}}</div>'+
-                '<div ng-class="{\'stronger\': sortField==\'labourCostTotal\'}">{{provider.labourCostTotal*0.01 | currencyFilter}}</div>'+
-                '<div ng-class="{\'stronger\': sortField==\'rebatesTotal\'}">{{provider.rebatesTotal | percentageFilter:1 }}</div>'+
+    template: '<div class="body-row multi-line">' +
+                '<div class="large label-column" ng-class="{\'stronger\': sortField==\'name\'}">{{provider.name}}</div>'+
+                '<div class="number small" ng-class="{\'stronger\': sortField==\'workerCount\'}">{{provider.workerCount}}</div>'+
+                '<div class="medium percentage" ng-class="{\'stronger\': sortField==\'complianceStats.Total\'}">{{provider.complianceStats | percentageFilter:0:"Total"}}</div>'+
+                '<div class="number divider figures medium" ng-class="{\'stronger\': sortField==\'grossPayTotal\'}">{{provider.grossPayTotal*0.01 | currencyFilter}}</div>'+
+                '<div class="number figures medium" ng-class="{\'stronger\': sortField==\'payRollAdminTotal\'}">{{provider.payRollAdminTotal*0.01 | currencyFilter}}</div>'+
+                '<div class="number figures medium weaker" ng-class="{\'stronger\': sortField==\'labourCostTotal\'}">{{provider.labourCostTotal*0.01 | currencyFilter}}</div>'+
+                '<div class="centered small divider last-column percentage" ng-class="{\'stronger\': sortField==\'rebatesTotal\'}">{{provider.rebatesTotal | percentageFilter:1 }}</div>'+
               '</div>'
 
   }

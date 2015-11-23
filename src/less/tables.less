@@ -4,6 +4,18 @@ Table related styles
 
 ******************************************************************************************/
 
+/* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+
+.text-center{
+	text-align: center;
+}
+.break-mark{
+	border-left: 1px solid grey;
+}
 div.table-holder {
 	margin: 0 0 0 120px;
 	overflow: hidden;
@@ -511,6 +523,7 @@ div.list-table {
 		}
 
 		&.header-row {
+			// background-color: blue;
 			line-height: (@default-font-size - 1) * 2;
 			
 			.icon {
@@ -606,7 +619,7 @@ div.list-table {
 		}
 		
 		> div {
-			text-align: left;
+			// text-align: left;
 			text-transform: uppercase;
 			color: @mid-light-grey-color;
 			font-size: @default-font-size - 2px;
@@ -1740,4 +1753,60 @@ div.mini-table-holder {
 			line-height: 41px;
 		}
 	}
+}
+
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	.list-table .header-row > div{
+		font-size: 60% !important;
+	}
+	.list-table .body-row > div{
+		font-size: 60%;
+	}
+
+	//Code to make the table into blocks of data ** it works **
+
+	// /* Force divs to not be like tables anymore */
+	// .list-table .header-row > div {
+	// 	display: block; 
+	// }
+	// .list-table .body-row > div {
+	// 	display: block
+	// }
+	
+	// .list-table .header-row > div {
+	// 	position: absolute;
+	// 	top: -9999px;
+	// 	left: -9999px;
+	// 	display: none;
+	// }
+
+	// .list-table .body-row > div {
+	// 	text-align: right;
+	// 	border: none;
+	// 	position: relative;
+	// 	padding-left: 60%; 
+	// }
+
+	// .list-table .body-row > div:before { 
+	// 	position: absolute;
+	// 	top: 6px;
+	// 	left: 6px;
+	// 	width: 45%; 
+	// 	padding-right: 10px; 
+	// 	white-space: nowrap;
+	// }
+	
+	// /*
+	// Label the data
+	// */
+	// .list-table .body-row > div:nth-of-type(1):before { content: "Payroll Provider"; }
+	// .list-table .body-row > div:nth-of-type(2):before { content: "Worker"; }
+	// .list-table .body-row > div:nth-of-type(3):before { content: "Compliance Score"; }
+	// .list-table .body-row > div:nth-of-type(4):before { content: "Gross Pay (£)"; }
+	// .list-table .body-row > div:nth-of-type(5):before { content: "Payroll Admin (£)"; }
+	// .list-table .body-row > div:nth-of-type(6):before { content: "Labour Cost (£)"; }
+	// .list-table .body-row > div:nth-of-type(7):before { content: "Work Force"; }
 }

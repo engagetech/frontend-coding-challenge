@@ -1,13 +1,80 @@
 <div ng-controller="ctrlLabourCost">
 	<h2>Labour cost report</h2>
-	
 	<div class="list-table">
 		<div class="header-row">
-			<div class="col-25">Example heading</div>
+			<div class="col-4" ng-click="setSort('type', 'name')">Payroll Provider <i ng-class="{
+            'icon chevron-up': sort[1] == 'name', 
+            'icon chevron-down': sort[1] == '-name' 
+        }"></i></div>
+			<div class="col-3 text-center" ng-click="setSort('workerCount')">Worker <i ng-class="{
+            'icon chevron-up': sort == 'workerCount', 
+            'icon chevron-down': sort == '-workerCount' 
+        }"></i></div>
+			<div class="col-3" ng-click="setSort('complianceStats.Total')">Compliance Score <i ng-class="{
+            'icon chevron-up': sort == 'complianceStats.Total', 
+            'icon chevron-down': sort == '-complianceStats.Total' 
+        }"></i></div>
+			<div class="col-3"></div>
+			<div class="col-3" ng-click="setSort('grossPayTotal')">Gross Pay (£) <i ng-class="{
+            'icon chevron-up': sort == 'grossPayTotal', 
+            'icon chevron-down': sort == '-grossPayTotal' 
+        }"></i></div>
+			<div class="col-3" ng-click="setSort('payrollAdminTotal')">Payroll Admin (£) <i ng-class="{
+            'icon chevron-up': sort == 'payrollAdminTotal', 
+            'icon chevron-down': sort == '-payrollAdminTotal' 
+        }"></i></div>
+			<div class="col-3" ng-click="setSort('labourCostTotal')">Labour Cost (£) <i ng-class="{
+            'icon chevron-up': sort == 'labourCostTotal', 
+            'icon chevron-down': sort == '-labourCostTotal' 
+        }"></i></div>
+			<div class="col-3" ng-click="setSort('workForce')">Work Force <i ng-class="{
+            'icon chevron-up': sort == 'workForce', 
+            'icon chevron-down': sort == '-workForce' 
+        }"></i></div>
 		</div>
+		<div class="header-row"></div>
 		
+		<div class="body-row" ng-repeat="data in combinedData | orderBy:sort">
+			<div class="col-4" ng-class="{
+            'sorted-column-reverse': sort[1] == '-name', 
+            'sorted-column': sort[1] == 'name' 
+        }">{{data.name}}</div>
+			<div class="col-3 text-center" ng-class="{
+            'sorted-column-reverse': sort == '-workerCount', 
+            'sorted-column': sort == 'workerCount' 
+        }">{{data.workerCount}}</div>
+			<div class="col-3 text-center" ng-class="{
+            'sorted-column-reverse': sort == '-complianceStats.Total', 
+            'sorted-column': sort == 'complianceStats.Total' 
+        }">{{data.complianceStats.Total | number : 0}}%</div>
+			<div class="col-3 text-center"></div>
+			<div class="col-3 text-center" ng-class="{
+            'sorted-column-reverse': sort == '-grossPayTotal', 
+            'sorted-column': sort == 'grossPayTotal' 
+        }">{{costCalculation(data.grossPayTotal) | number : 0}}</div>
+			<div class="col-3 text-center" ng-class="{
+            'sorted-column-reverse': sort == '-payrollAdminTotal', 
+            'sorted-column': sort == 'payrollAdminTotal' 
+        }">{{data.payrollAdminTotal || '-'}}</div>
+			<div class="col-3 text-center" ng-class="{
+            'sorted-column-reverse': sort == '-labourCostTotal', 
+            'sorted-column': sort == 'labourCostTotal' 
+        }">{{costCalculation(data.labourCostTotal) | number : 0}}</div>
+			<div class="col-3 text-center" ng-class="{
+            'sorted-column-reverse': sort == '-workForce', 
+            'sorted-column': sort == 'workForce' 
+        }">{{((data.workerCount/total.workerCount)*100) | number : 1}}%</div>
+		</div>
+		<div class="body-row"></div>
 		<div class="body-row">
-			<div class="col-25">Example data entry</div>
+			<div class="col-4" style="text-align=right;">Total</div>
+			<div class="col-3 text-center">{{total.workerCount}}</div>
+			<div class="col-3 text-center">{{total.complianceStats.Total | number : 0}}%</div>
+			<div class="col-3 text-center"></div>
+			<div class="col-3 text-center">{{costCalculation(total.grossPayTotal) | number : 0}}</div>
+			<div class="col-3 text-center">{{total.payrollAdminTotal || '-'}}</div>
+			<div class="col-3 text-center">{{costCalculation(total.labourCostTotal) | number : 0}}</div>
+			<div class="col-3 text-center">{{((total.workerCount/total.workerCount)*100) | number : 1}}%</div>
 		</div>
 	</div>
 </div>

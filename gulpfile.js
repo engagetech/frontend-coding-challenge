@@ -9,6 +9,7 @@ var config = require("./config.js");
 var path = require("path");
 var parseargs = require("minimist");
 var gulp = require("gulp");
+var connect = require('gulp-connect');
 var gulpsync = require("gulp-sync")(gulp);
 var less = require("gulp-less");
 var sourcemaps = require("gulp-sourcemaps");
@@ -263,7 +264,7 @@ gulp.task("css", function() {
 					plugins: [
 					]
 				}))
-				.pipe(rename(basename + ".main.min.css"))
+				.pipe(rename("main.min.css"))
 				.pipe(filesize())
 				.pipe(sourcemaps.write("../maps"))
 				.pipe(gulp.dest(paths.build.target + "css/"));
@@ -371,6 +372,12 @@ gulp.task("less", gulpsync.sync(["commithash", "uncompressed", "copyfrom", "html
 // App scripts only build chain
 gulp.task("apps", gulpsync.sync(["commithash", "uncompressed", "copyfrom", "html", "apps-scripts", "copyto"], "sync apps"));
 
+gulp.task('webserver', function() {
+  connect.server({
+  	livereload: true
+  });
+});
+
 // Watch files and trigger minimal builds
 gulp.task("watch", function() {
 	gulp.watch(buildPathArray(paths.static.source, lists.css.watch), ["less"]);
@@ -385,3 +392,6 @@ gulp.task("help", function() {
 
 // Default build task
 gulp.task("default", ["clean-build"]);
+
+ 
+gulp.task('default', ['webserver', 'less', 'watch']);

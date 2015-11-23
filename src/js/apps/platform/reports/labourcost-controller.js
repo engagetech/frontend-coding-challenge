@@ -22,7 +22,6 @@ app.controller("ctrlLabourCost", ["$rootScope", "$scope", "$timeout", "restalche
 	rest.api = $rootScope.config.api.labourstats;
 	
 	rest.at(rest.api.costs).get().then(function(costdata) {
-		console.log(costdata);
 		
 		var data = costdata[0];
 		var combinedData = [];
@@ -40,7 +39,7 @@ app.controller("ctrlLabourCost", ["$rootScope", "$scope", "$timeout", "restalche
 				provider.complianceStats = {};
 				provider.complianceStats.Total = 0;
 			}
-			provider.workForce = ((provider.workerCount/$scope.total.workerCount)*100)
+			provider.workForce = ((provider.workerCount/$scope.total.workerCount)*100);
 		};
 	});
 
@@ -55,6 +54,7 @@ app.controller("ctrlLabourCost", ["$rootScope", "$scope", "$timeout", "restalche
 				$scope.sort[i] = arguments[i];
 			}
 		}
+		
 		if(arguments.length == 1 && $scope.sort.length > 1){
 			$scope.sort.splice(1);
 		}

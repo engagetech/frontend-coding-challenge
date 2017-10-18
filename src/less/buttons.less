@@ -4,7 +4,7 @@ Button specific styles
 
 ******************************************************************************************/
 
-button {
+button, a.button {
 	border: 1px solid @main-theme-color;
 	border-radius: 5px;
 	padding: 6px 15px;
@@ -16,7 +16,7 @@ button {
 	vertical-align: bottom;
 	outline: none;
 	white-space: nowrap;
-	
+
 	&.bare {
 		border: none;
 
@@ -24,61 +24,121 @@ button {
 			color: @mid-light-grey-color;
 			margin-right: 8px;
 		}
-		
+
 		&:hover {
 			color: @main-theme-color;
-			
-			i {
+			background-color: @paper-background-color;
+
+			i.icon {
 				color: @main-theme-color;
 			}
 		}
-		
+
 		&.cancel {
 			color: @main-theme-color;
-			
+
 			&:hover {
 			}
 		}
+
+		&.disabled, &.disabled:hover, &:disabled, &:disabled:hover {
+			color: @light-grey-color;
+			border: none;
+
+			&:hover {
+				border: none;
+			}
+
+			i.icon {
+				color: @light-grey-color;
+			}
+		}
+
+		&.no-margin {
+			padding: 0;
+		}
 	}
-	
+
 	&.solid {
 		color: @paper-background-color;
 		background-color: @main-theme-color;
-		
+
 		&:hover {
 			color: @paper-background-color;
 		}
-		
+
 		&.disabled, &:disabled {
+			color: @paper-background-color;
 			background-color: @light-grey-color;
 			border-color: @light-grey-color;
+			
+			&:hover {
+				color: @paper-background-color;
+				background-color: @light-grey-color;
+				border-color: @light-grey-color;
+			}
 		}
 	}
-	
-	&:hover {
-		color: @navigation-background-color;
+
+	&.divider {
+		border-radius: 0px;
+		border-left: 1px dotted @mid-light-grey-color;
 	}
-	
+
+	&:hover {
+		color: @paper-background-color;
+		background-color: @main-theme-color;
+
+		i.icon {
+			color: @paper-background-color;
+		}
+	}
+
 	i.icon {
 		height: 22px;
 		width: 22px;
 		position: relative;
 		left: -3px;
-		
+
 		&.crop-circle.small {
 			vertical-align: top;
 		}
 	}
 
-	&.disabled {
+	&.disabled, &:disabled {
 		cursor: auto;
+		color: @light-grey-color;
+		border: 1px solid @light-grey-color;
+
+		&:hover {
+			background-color: @paper-background-color;
+
+			i.icon {
+				color: @light-grey-color;
+			}
+		}
+
 		i.icon {
 			color: @light-grey-color;
 		}
 	}
-	
+
 	&.focused {
 		text-decoration: underline;
+	}
+
+	span.desktop {
+		@media (max-width: @mobile-screen-width) {
+			display: none;
+		}
+	}
+
+	span.mobile {
+		display: none;
+
+		@media (max-width: @mobile-screen-width) {
+			display: inline;
+		}
 	}
 }
 
@@ -92,7 +152,7 @@ a.text-link {
 	display: inline-block;
 	height: 28px;
 	cursor: pointer;
-	
+
 	input {
 		position: absolute;
 		opacity: 0.0001;
@@ -101,11 +161,18 @@ a.text-link {
 		bottom: 0;
 		cursor: pointer;
 	}
-	
+
 	&:hover {
 		button {
 			color: @navigation-background-color;
-			
+			&.disabled {
+				cursor: auto;
+				color: @light-grey-color;
+				i {
+					color: @light-grey-color;
+				}
+			}
+
 			i {
 				color: @navigation-background-color;
 			}
@@ -115,18 +182,24 @@ a.text-link {
 
 .clickable {
 	cursor: pointer;
-	
+
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
 }
 
+.mobile-clickable {
+	@media (max-width: @mobile-screen-width) {
+		.clickable;
+	}
+}
+
 .checkbox {
 	display: inline-block;
 	color: @light-pale-grey-color;
 	margin-right: 4px;
-	
+
 	&.circle {
 		.icon-iconfont();
 		.glyph-circle-outlined();
@@ -135,24 +208,24 @@ a.text-link {
 		width: 20px;
 		height: 20px;
 		vertical-align: middle;
-		
+
 		&.checked {
 			.glyph-tick-circled-thicker();
 			color: @main-theme-color;
 		}
-		
-		&.thirdstate {
+
+		&.third-state {
 			color: @light-pale-grey-color;
 		}
-		
+
 		&:before {
 			position: relative;
 			top: -5px;
 		}
-		
+
 		&.circle-clear {
 			.glyph-circle-outlined-thick();
-			
+
 			&.checked {
 				.glyph-tick-circled-outlined-thick();
 			}
@@ -163,13 +236,13 @@ a.text-link {
 			width: 24px;
 			height: 24px;
 		}
-		
+
 		&.largest {
 			font-size: @default-font-size + 12px;
 			width: 26px;
 			height: 26px;
 		}
-		
+
 		&.disabled {
 			color: @light-pale-grey-color;
 		}
@@ -178,12 +251,12 @@ a.text-link {
 
 .checkbox-parent {
 	cursor: pointer;
-	
+
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-	
+
 	&.checked {
 		color: @navigation-background-color;
 	}

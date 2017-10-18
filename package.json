@@ -7,15 +7,15 @@
 		"name": "AlchemyTec"
 	},
 	"contributors": [
-	{
-		"name": "Robee Shepherd"
-	},
-	{
-		"name": "Alex McBeth"
-	},
-	{
-		"name": "Artur Klopotek"
-	}
+		{
+			"name": "Robee Shepherd"
+		},
+		{
+			"name": "Alex McBeth"
+		},
+		{
+			"name": "Artur Klopotek"
+		}
 	],
 	"license": "Commercial",
 	"private": true,
@@ -25,7 +25,9 @@
 	"engines": {
 		"node": ">=0.10.26 <0.11"
 	},
-	"devDependencies": {},
+	"devDependencies": {
+		"gulp-webserver": "^0.9.1"
+	},
 	"dependencies": {
 		"browserify": "^11.0.1",
 		"del": "^1.2.0",

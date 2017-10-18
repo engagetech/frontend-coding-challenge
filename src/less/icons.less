@@ -4,15 +4,6 @@ Icon specific styles
 
 ******************************************************************************************/
 
-@font-face {
-	font-family: "iconfont";
-	src:url("../fonts/iconfont.ttf") format("truetype"),
-	url("../fonts/iconfont.woff") format("woff"),
-	url("../fonts/iconfont.svg") format("svg");
-	font-weight: normal;
-	font-style: normal;
-}
-
 i.icon {
 	.icon-iconfont();
 	color: @light-grey-color;
@@ -32,24 +23,24 @@ i.icon {
 			position: relative;
 			left: -5px;
 		}
-		
+
 		&.small {
 			vertical-align: middle;
 			font-size: @default-font-size + 11px;
 			line-height: 18px;
 			height: 18px;
 			width: 18px;
-			
+
 			&:before {
 				height: 18px;
 				width: 18px;
 			}
 		}
 	}
-	
+
 	&.issue {
 		.glyph-flag();
-		
+
 		height: 22px;
 		width: 42px;
 		font-size: 42px;
@@ -57,111 +48,153 @@ i.icon {
 		top: 3px;
 		line-height: 22px;
 		vertical-align: top;
-		
+
 		&.positive {
 			color: @mid-dark-green-color;
 		}
-		
+
 		&.negative {
 			color: @mid-dark-red-color;
 		}
 	}
-	
+
 	&.expand {
 		.glyph-plus-circled-outlined-thick();
-		
+
+		&.toggle-show, &.expanded {
+			color: @main-theme-color;
+			.glyph-cross-circled-outlined-thick();
+		}
+
+		&.small {
+			top: -2px;
+		}
+	}
+
+	&.contract {
+		.glyph-cross-circled-outlined-thick();
+
 		&.toggle-show {
 			color: @main-theme-color;
 		}
+
+		&.small {
+			top: -2px;
+		}
 	}
-	
+
 	&.sort {
 		.glyph-chevron-down();
 		color: @main-theme-color;
 	}
-	
+
 	&.chevron-down {
 		.glyph-chevron-down();
 	}
-	
+
 	&.chevron-up {
 		.glyph-chevron-up();
 	}
-	
+
 	&.home {
 		.glyph-chevron-up();
 	}
-	
+
 	&.validation-error {
 		.glyph-cross-circled-outlined-thick();
 	}
-	
-	&.dropdown {
-		.glyph-chevron-down();
-		color: @main-theme-color;
-		margin-left: 10px;
-		font-size: 22px;
-		margin-top: -4px;
-		vertical-align: middle;
-	}
-	
+
 	&.hamburger {
 		.glyph-three-stripes-menu();
 		color: @main-theme-color;
 	}
-	
-	&.delete {
-		.glyph-cross();
-		color: @mid-dark-red-color;
-		
-		&.small {
-			vertical-align: top;
-			height: 24px;
-			top: -5px;
-			margin-right: -10px;
+
+	&.dropdown {
+		.glyph-chevron-down();
+		color: @main-theme-color;
+
+		&.hidden {
+			display: none;
 		}
-	} 
-	
+	}
+
+	&.delete {
+		.glyph-cross-circled-thicker();
+		color: @light-grey-color;
+	}
+
+	&.dropdown, &.delete {
+		font-size: @default-font-size + 8px;
+		height: @default-font-size + 8px;
+		outline: none;
+
+		&.postfix {
+			position: relative;
+			width: 0;
+			overflow: visible;
+			left: -22px;
+			top: -2px;
+			height: 28px;
+			vertical-align: middle;
+
+			&:before {
+				background-color: @paper-background-color;
+			}
+
+			&.bare {
+				top: -2px;
+			}
+
+			&.clear-chevron:before {
+				background: rgba(255, 255, 255, 0);
+			}
+
+			&.inside {
+				left: -34px;
+			}
+		}
+	}
+
 	&.next {
 		.glyph-arrow-right();
-		color: @main-theme-color;
+		color: @mid-grey-color;
 	}
 
 	&.previous {
 		.glyph-arrow-left();
-		color: @main-theme-color;
+		color: @mid-grey-color;
 	}
-	
+
 	&.arrow-left {
 		.glyph-arrow-left();
-		
+
 		vertical-align: middle;
   		margin-right: 5px;
 	}
-	
+
 	&.arrow-right {
 		.glyph-arrow-right();
-		
+
 		vertical-align: middle;
   		margin-left: 5px;
 	}
-	
+
 	&.chevron-right {
 		.glyph-chevron-right();
 	}
-	
+
 	&.chevron-circled-right {
 		.glyph-chevron-right-circled-outlined();
 	}
-	
+
 	&.chevron-circled-down {
 		.glyph-chevron-down-circled-outlined();
 	}
-	
+
 	&.dot-grid {
 		.glyph-three-by-three-dots();
 	}
-	
+
 	&.bell {
 		.glyph-bell();
 	}
@@ -169,126 +202,148 @@ i.icon {
 	&.search {
 		.glyph-magnifying-glass();
 	}
-	
+
 	&.check {
 		.glyph-tick-circled-outlined();
 	}
-	
-	&.compliant {
+
+	&.checked {
 		.glyph-tick();
 	}
-	
-	&.noncompliant {
-		.glyph-minus();
+
+	&.compliant {
+		.glyph-tick-circled-outlined-thick();
 	}
-	
+
+	&.non-compliant {
+		.glyph-cross-circled-outlined-thick();
+	}
+
+	&.compliance-unknown {
+		.glyph-hand();
+	}
+
+	&.pending {
+		.glyph-three-dots();
+	}
+
 	&.dashes {
 		.glyph-minus();
 	}
-	
+
 	&.close {
 		.glyph-cross();
 		color: @main-theme-color;
 	}
-	
+
 	&.circle {
 		.glyph-circle();
-		
+
 		&:before {
-			color: @light-grey-color; 
+			color: @light-grey-color;
 		}
 		&.white:before {
 			color: @paper-background-color;
 		}
 	}
-	
+
 	&.circle-small {
 		.glyph-circle-small();
-		
+
 		&:before {
-			color: @light-grey-color; 
+			color: @light-grey-color;
 		}
 		&.white:before {
 			color: @paper-background-color;
 		}
 	}
-	
+
 	&.circle-outlined {
 		.glyph-circle-outlined();
 	}
-	
+
 	&.paperclip {
 		.glyph-paper-clip();
 		vertical-align: middle;
 	}
-	
+
 	&.cloud-arrow {
 		.glyph-cloud-arrow-up();
 		color: @paper-background-color;
 	}
-	
+
 	&.arrow-left-down {
 		.glyph-arrow-left-down();
 		vertical-align: middle;
 	}
-	
+
 	&.arrow-right-down {
 		.glyph-arrow-right-down();
 		vertical-align: middle;
 	}
-	
+
 	&.page-up {
 		.glyph-arrow-up();
 	}
-	
+
 	&.page-down {
 		.glyph-arrow-down();
 	}
-	
+
 	&.app-tasks {
-		.glyph-task-list();
-		color: @navigation-background-color;
+		.glyph-checklist();
 	}
-	
+
 	&.app-reports {
 		.glyph-pie-diagram();
-		color: @navigation-background-color;
 	}
-	
+
 	&.app-vacancies {
 		.glyph-briefcase();
-		color: @navigation-background-color;
 	}
-	
+
 	&.app-payandbill {
 		.glyph-bill-pay();
-		color: @navigation-background-color;
 	}
-	
+
 	&.app-billling {
 		.glyph-payday();
-		color: @navigation-background-color;
 	}
-	
+
+	&.app-timesheets {
+		.glyph-timesheet();
+	}
+
 	&.app-workers {
 		.glyph-badge();
-		color: @navigation-background-color;
 	}
-	
+
+	&.app-documents {
+		.glyph-badge();
+	}
+
+	&.app-invoices {
+		.glyph-bill-pay();
+	}
+
 	&.add {
 		.glyph-plus();
 		color: @main-theme-color;
 	}
-	
+
+	&.add-circled {
+		.glyph-plus-circled-outlined();
+	}
+
 	&.remove {
 		.glyph-minus();
 		color: @main-theme-color;
 	}
-	
+
 	&.email {
 		.glyph-envelope-outlined();
 	}
-	
+
 	&.trashcan {
 		.glyph-trash-can-outlined();
 	}
@@ -296,41 +351,45 @@ i.icon {
 	&.pencil {
 		.glyph-pencil-outlined();
 	}
-	
+
 	&.right-arrow {
 		.glyph-arrow-right();
 	}
-	
+
 	&.attachment {
 		.glyph-paper-clip();
 	}
-	
+
 	&.apps {
 		.glyph-three-by-three-dots();
 	}
-	
+
 	&.tick {
 		.glyph-tick();
 	}
-	
+
 	&.cross {
 		.glyph-cross();
 	}
-	
+
 	&.link {
 		.glyph-chains();
 	}
-	
+
 	&.more {
 		.glyph-three-dots();
 	}
-	
+
 	&.download {
 		.glyph-cloud-arrow-down();
 	}
-	
+
 	&.status-good {
 		.glyph-tick-circled-outlined-thick();
+	}
+
+	&.site {
+		.glyph-building();
 	}
 
 	.badge {
@@ -339,8 +398,8 @@ i.icon {
 	   	right: -1px;
 	   	top: -4px;
 	   	font-size: @default-font-size - 4px;
-		background-color: @navigation-icon-alert-color;		   	
-	   	width: 19px; 
+		background-color: @navigation-icon-alert-color;
+	   	width: 19px;
 	   	height: 19px;
 	   	text-align: center;
 	   	line-height: 16px;
@@ -348,11 +407,11 @@ i.icon {
 	   	border: 1px solid @navigation-background-color;
 
 	   	&.large {
-		   	width: 24px; 
+		   	width: 24px;
 		   	right: -5px;
 		   	border-radius: 80%;
 	   	}
-	}	
+	}
 
 	&.red {
 		color: @mid-dark-red-color;
@@ -366,7 +425,7 @@ i.icon {
 		.badge {
 		   	top: 5px;
 		}
-		
+
 		&.disabled {
 			color: @mid-light-grey-color;
 		}
@@ -374,20 +433,56 @@ i.icon {
 	&.theme-navbar {
 		color: @navigation-background-color;
 	}
-	
+
 	&.dark {
 		color: @dark-grey-color;
 	}
-	&.disabled {
-		color: @mid-light-grey-color;
+
+	&.disabled, &[disabled] {
+		color: @light-grey-color;
 	}
-	
+
 	&.small {
 		font-size: 25px;
-		
+
 		&.crop-circle {
 			width: 15px;
 			height: 15px;
+		}
+	}
+
+	&.bullet {
+		.glyph-circle-outlined-thick();
+
+		font-size: 20px;
+
+		&:before {
+			top: -8px;
+			position: relative;
+		}
+
+		&.selected {
+			.glyph-circle-small();
+		}
+	}
+
+	.icon {
+	    position: absolute;
+		left: 5px;
+		top: 10px;
+	}
+
+	&.inline {
+	    vertical-align: middle;
+		margin-right: 5px;
+	}
+
+	&.currency {
+		font-size: @default-font-size + 2px;
+		font-family: @default-font-family;
+		color: @mid-grey-color;
+		&:before {
+			content: "£";
 		}
 	}
 }
@@ -407,27 +502,27 @@ h2 i.icon {
 
 	width: 35px;
 	height: 35px;
-	
+
 	vertical-align: top;
-	
+
 	span {
 		position: absolute;
 		left: 0;
 		top: 0;
-		
+
 		width: 35px;
 		height: 35px;
-		
+
 		overflow: hidden;
 		display: block;
-		
+
 		color: @paper-background-color;
 		font-size: 13px;
 		font-weight: @weight-medium;
 		line-height: 35px;
 		text-align: center;
 	}
-	
+
 	i {
 		position: absolute;
 		left: 0;
@@ -435,7 +530,7 @@ h2 i.icon {
 
 		overflow: visible;
 		display: block;
-		
+
 		color: @paper-background-color;
 		font-size: 35px;
 
@@ -446,7 +541,7 @@ h2 i.icon {
 
 .user-portrait {
 	.userPortraitIcon();
-	
+
 	&.large {
 		width: 64px;
 		height: 64px;
@@ -457,16 +552,16 @@ h2 i.icon {
 			width: 64px;
 			height: 64px;
 		}
-		
+
 		i {
 			font-size: 64px;
 		}
-		
+
 		span {
 			font-size: 29px;
 			font-weight: @weight-book;
 		}
-		
+
 		@media (max-width: @max-mobile-width) {
 			display: none;
 		}
@@ -476,36 +571,36 @@ h2 i.icon {
 .spinny-thing-sizes(@anim-name, @spinny-width) {
 	width: @spinny-width;
 	height: floor(@spinny-width / 2);
-	
+
 	.keyframes-fontsize-throb(@anim-name, floor(@spinny-width / 8), ceil(@spinny-width / 4) - 2px);
-	
+
 	.surround {
 		left: 0;
 		top: -(floor(@spinny-width / 4));
-		
+
 		font-size: @spinny-width;
 	}
-	
+
 	.circle {
 		width: floor(@spinny-width / 4);
 		height: floor(@spinny-width / 4);
 		margin-left: -(floor(@spinny-width / 8));
 		margin-top: 0;
 		line-height: floor(@spinny-width / 2);
-		
+
 		font-size: floor(@spinny-width / 8);
 	}
-	
+
 	&.animating {
 		.circle {
 			&:nth-child(1) {
 				.animation(@anim-name, 2500ms, ease, 0s, infinite);
 			}
-	
+
 			&:nth-child(2) {
 				.animation(@anim-name, 2500ms, ease, 750ms, infinite);
 			}
-			
+
 			&:nth-child(3) {
 				.animation(@anim-name, 2500ms, ease, 1500ms, infinite);
 			}
@@ -516,37 +611,37 @@ h2 i.icon {
 .spinny-thing-colours(@anim-name, @spinny-width) {
 	width: @spinny-width;
 	height: floor(@spinny-width / 2);
-	
+
 	.keyframes-colour-throb(@anim-name, @paper-background-color, mix(@light-grey-color, @paper-background-color, 80%));
-	
+
 	.surround {
 		left: 0;
 		top: -(floor(@spinny-width / 4));
-		
+
 		font-size: @spinny-width;
 	}
-	
+
 	.circle {
 		width: floor(@spinny-width / 4);
 		height: floor(@spinny-width / 4);
 		margin-left: -(floor(@spinny-width / 8));
 		margin-top: 0;
 		line-height: floor(@spinny-width / 2);
-		
+
 		font-size: floor(@spinny-width / 5);
 		color: @paper-background-color;
 	}
-	
+
 	&.animating {
 		.circle {
 			&:nth-child(1) {
 				.animation(@anim-name, 2000ms, ease, 0s, infinite);
 			}
-	
+
 			&:nth-child(2) {
 				.animation(@anim-name, 2000ms, ease, 250ms, infinite);
 			}
-			
+
 			&:nth-child(3) {
 				.animation(@anim-name, 2000ms, ease, 500ms, infinite);
 			}
@@ -558,34 +653,34 @@ h2 i.icon {
 	position: relative;
 	display: inline-block;
 	vertical-align: middle;
-	
+
 	text-align: center;
-	
+
 	&.giant {
 		.spinny-thing-colours(giant-fontsize-throb, 200px);
 	}
-	
+
 	&.large {
 		.spinny-thing-colours(large-fontsize-throb, 100px);
 	}
-	
+
 	&.medium {
 		.spinny-thing-colours(medium-fontsize-throb, 50px);
 	}
-	
+
 	&.small {
 		.spinny-thing-colours(medium-fontsize-throb, 25px);
-	}	
-	
+	}
+
 	.surround {
 		.icon-iconfont();
 		.glyph-three-dots-surround();
-		
+
 		position: absolute;
 		line-height: 100%;
 		color: @light-grey-color;
 	}
-	
+
 	.throbbers {
 		position: absolute;
 		left: 0;
@@ -593,29 +688,29 @@ h2 i.icon {
 		right: 0;
 		bottom: 0;
 	}
-	
+
 	.circle {
 		.icon-iconfont();
 		.glyph-circle();
-		
+
 		position: absolute;
 		top: 0;
 		left: 25%;
-		
+
 		width: 30px;
 		height: 30px;
 		overflow: visible;
 		text-align: center;
 		line-height: 25px;
-		
+
 		color: @paper-background-color;
-		
+
 		font-size: 15px;
-		
+
 		&:nth-child(2) {
 			left: 50%;
 		}
-		
+
 		&:nth-child(3) {
 			left: 75%;
 		}
@@ -623,7 +718,8 @@ h2 i.icon {
 }
 
 .spinner .spinny-thing .surround {
-	text-shadow: 5px 5px 25px @mid-light-grey-color;
+	// Disabled as Chrome on Mac has a major offset bug when displaying this
+	//text-shadow: 5px 5px 25px @dark-grey-color;
 }
 
 .avatar {

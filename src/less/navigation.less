@@ -22,6 +22,7 @@ Navigation specific styles
 	left: 0;
 	top: 0;
 	right: 0;
+	border-bottom: @navigation-border;
 
 	.logo {
 		position: relative;
@@ -31,11 +32,11 @@ Navigation specific styles
 
 		width: @logo-header-width-collapsed;
 		.transition(width 200ms ease-in-out);
-		
+
 		&:hover {
 			width: @logo-header-width-full;
 		}
-		
+
 		height: @navigation-bar-height;
 
 		background-image: @logo-header-image;
@@ -48,11 +49,11 @@ Navigation specific styles
 		background-size: @logo-header-width-full;
 
 		border-right: 1px solid @navigation-background-color;
-		
+
 		@media (max-width: (@max-screen-width - 1px)) {
 			margin-left: 40px;
 		}
-		
+
 		@media (max-width: @small-tablet-screen-width) {
 			margin-left: 10px;
 		}
@@ -76,7 +77,7 @@ Navigation specific styles
 		margin: 0 15px 0 0;
 
 		line-height: @default-gap;
-		
+
 		.divider {
 			width: 1px;
 			height: 35px;
@@ -84,7 +85,7 @@ Navigation specific styles
 			background-color: darken(@navigation-background-color, 5%);
 			display: inline-block;
 			margin: 0 7px 0 12px;
-			
+
 			@media (max-width: @mobile-screen-width) {
 				display: none;
 			}
@@ -100,7 +101,8 @@ Navigation specific styles
 			margin-top: 9px;
 			width: 35px;
 			height: 35px;
-			
+			color: @navigation-text-color;
+
 			&:before {
 				top: -9px;
 				position: relative;
@@ -117,8 +119,9 @@ Navigation specific styles
 			float: left;
 			position: relative;
 			margin: 0 8px;
-			
+
 			.icon {
+				color: @navigation-text-color;
 				margin: 0;
 			}
 
@@ -134,7 +137,7 @@ Navigation specific styles
 
 			width: 35px;
 			height: 35px;
-			
+
 			top: 0;
 
 			span {
@@ -175,21 +178,11 @@ Navigation specific styles
 				text-align: center;
 
 				&:before {
-					color: @navigation-icon-color;
-				}
-			}
-			
-			&:hover {
-				span {
-					color: @navigation-icon-hover-color;
-				}
-				
-				i:before {
-					color: @navigation-icon-hover-background-color;
+					color: @navigation-icon-background-color;
 				}
 			}
 		}
-		
+
 		.badge {
 			border: 1px solid @navigation-background-color;
 		}
@@ -215,9 +208,59 @@ Navigation specific styles
 		display: inline-block;
 		margin-left: 40px;
 		line-height: @default-gap;
-		
+
 		&:hover {
-			color: @navigation-icon-hover-color;
+			color: @navigation-icon-selected-color;
+		}
+	}
+
+	&.switcher {
+		position: relative;
+		background-color: @near-black;
+		color: @navigation-text-color;
+		text-align: center;
+		height: @navigation-bar-height;
+		overflow: hidden;
+
+		ul {
+			position: relative;
+			top: 12px;
+
+			label {
+				color: @mid-grey-color;
+				width: auto;
+
+				@media (max-width: @mobile-screen-width) {
+					display: inline;
+					width: auto;
+					margin-left: 0;
+				}
+			}
+
+			span.dropdown {
+				border-bottom-color: @mid-grey-color;
+				text-align: left;
+				color: @pale-bright-grey-color;
+			}
+
+			.icon.dropdown.postfix {
+				&:before {
+					background-color: @near-black;
+					color: @pale-bright-grey-color;
+				}
+			}
+		}
+
+		.user {
+			position: absolute;
+			right: 0;
+			top: 17px;
+			color: @mid-grey-color;
+			text-align: right;
+
+			@media (max-width: @small-tablet-screen-width) {
+				display: none;
+			}
 		}
 	}
 }
@@ -248,7 +291,9 @@ Navigation specific styles
 		}
 
 		.icon.dropdown {
-			vertical-align: middle;
+			margin-left: 10px;
+			top: -2px;
+			position: relative;
 		}
 	}
 
@@ -315,6 +360,7 @@ Navigation specific styles
 				display: block;
 				margin: 0 auto 10px;
 				font-size: 70px;
+				color: @navigation-appicon-color;
 
 				&:before {
 					position: relative;
@@ -326,7 +372,7 @@ Navigation specific styles
 			span {
 				display: block;
 				font-size: @default-font-size - 1px;
-				color: @navigation-background-color;
+				color: @navigation-appicon-color;
 			}
 		}
 
@@ -375,15 +421,15 @@ Navigation specific styles
 				text-align: center;
 
 				&:before {
-					color: @navigation-icon-color;
+					color: @navigation-icon-background-color;
 				}
 			}
-			
+
 			&:hover {
 				span {
 					color: @navigation-icon-hover-color;
 				}
-				
+
 				i:before {
 					color: @navigation-icon-hover-background-color;
 				}
@@ -401,7 +447,7 @@ Navigation specific styles
 	height: @navigation-bar-height;
 
 	background-color: @navigation-background-color;
-	color: @paper-background-color;
+	color: @navigation-text-color;
 	box-shadow: 0px 2px 10px @mid-dark-grey-color;
 
 	> .navigation-container {
@@ -456,7 +502,7 @@ Navigation specific styles
 		height: @navigation-bar-height;
 		overflow: hidden;
 
-		color: @paper-background-color;
+		color: @navigation-text-color;
 
 		white-space: nowrap;
 		text-overflow: ellipsis;
@@ -507,9 +553,6 @@ Navigation specific styles
 	right: 0;
 	top: @navigation-bar-height;
 
-	@media (max-width: @mobile-screen-width) {
-	}
-
 	ul {
 		text-align: left;
 
@@ -533,7 +576,7 @@ Navigation specific styles
 		display: inline-block;
 		margin-left: 40px;
 		line-height: (@default-font-size + 1px) * 2;
-		
+
 		&:hover {
 			color: @navigation-icon-hover-color;
 		}
@@ -576,7 +619,7 @@ Navigation specific styles
 		}
 	}
 
-	&.nomargin {
+	&.no-margin {
 		margin: 0;
 	}
 
@@ -716,7 +759,7 @@ ul.tab-list {
 				top: 0;
 			}
 		}
-		
+
 		span.number {
 			color: @dark-grey-color;
 		}
@@ -776,7 +819,7 @@ ul.tab-list {
 			line-height: inherit;
 		}
 	}
-	
+
 	.button-bar.top-bar {
 		margin-top: -15px;
 	}
@@ -834,6 +877,7 @@ ul.tab-list {
 
 		.icon {
 			margin-right: 7px;
+			color: @navigation-text-color;
 		}
 	}
 
@@ -842,6 +886,11 @@ ul.tab-list {
 			background-color: @navigation-background-color;
 			color: @navigation-text-color;
 			font-size: @default-font-size + 2px;
+			border: none;
+			padding: 0 0 0 10px;
+			position: relative;
+			top: -2px;
+			height: 24px;
 
 			&::-webkit-input-placeholder {
 				color: @navigation-secondary-text-color;
@@ -921,20 +970,21 @@ ul.nav-list {
 }
 
 #app-menu {
+
 	.icon-area, .logo-area {
 		display: none;
 	}
-	
+
 	.app-icon-container {
 		.app-icon {
 			&:hover {
 				i.icon, span {
-					color: @navigation-icon-hover-color;
+					color: @navigation-icon-selected-color;
 				}
 			}
 		}
 	}
-	
+
 	@media (max-width: @small-tablet-screen-width) {
 		max-width: 180px;
 	}
@@ -967,47 +1017,48 @@ ul.nav-list {
 			.user {
 				top: 4px;
 			}
-			
+
 			.selected {
 				.icon {
 					color: @navigation-icon-selected-color;
 				}
-				
+
 				.user {
 					span {
-						color: @navigation-icon-selected-color;
+						color: @main-theme-color;
 					}
 				}
 			}
-			
+
 			.hoverable {
 				height: 35px;
 				top: 5px;
-				
+				color: @navigation-text-color;
+
 				&:before {
 					top: -5px;
 					position: relative;
 				}
-				
+
 				&:hover {
 					color: @navigation-icon-hover-color;
 					background-color: @navigation-icon-hover-background-color;
 					border-radius: 50%;
 				}
 			}
-			
+
 			.badge {
 				border: 1px solid @navigation-background-color;
 			}
 		}
-		
+
 		.app-icon-container {
 			overflow: hidden;
 			background-color: @paper-background-color;
 			margin: 0 -10px;
 			padding: 0 10px;
 		}
-		
+
 		.text-list {
 			background-color: @paper-background-color;
 			margin: 0 -10px;
@@ -1015,9 +1066,9 @@ ul.nav-list {
 		}
 
 		.border-pointer {
-			color: @main-theme-color;
-			background-color: @paper-background-color;
-			border-top: 1px solid @navigation-background-color;
+			color: @navigation-menu-color;
+			background: @paper-background-color;
+			border-top: 1px solid @navigation-menu-border-color;
 			padding: 0px 20px 0;
 			margin: 0 -10px;
 			position: relative;
@@ -1030,7 +1081,7 @@ ul.nav-list {
 				margin-left: -12px;
 				width: 0;
 				height: 0;
-				border-bottom: 10px solid @navigation-background-color;
+				border-bottom: 10px solid @navigation-menu-border-color;
 				border-right: 10px solid transparent;
 				border-left: 10px solid transparent;
 			}
@@ -1043,7 +1094,7 @@ ul.nav-list {
 				margin-left: -10px;
 				width: 0;
 				height: 0;
-				border-bottom: 8px solid #FFFFFF;
+				border-bottom: 8px solid @paper-background-color;
 				border-right: 8px solid transparent;
 				border-left: 8px solid transparent;
 			}
@@ -1076,7 +1127,7 @@ ul.nav-list {
 		.logo-area {
 			display: block;
 			height: 45px;
-			border-top: 1px solid @navigation-background-color;
+			border-top: 1px solid @navigation-menu-border-color;;
 			margin: 0 -10px;
 
 			background-image: @logo-small-image;
@@ -1097,6 +1148,9 @@ ul.nav-list {
 .droplist.nav-dropdown {
 	border: none;
 	padding-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border-top: 15px solid @navigation-background-color;
 
 	li.autocomplete {
 		height: 32px;
@@ -1128,13 +1182,5 @@ ul.nav-list {
 
 	icon.dropdown {
 		display: none;
-	}
-
-	&.empty {
-		padding-bottom: 0;
-
-		li.noresults {
-			display: none;
-		}
 	}
 }

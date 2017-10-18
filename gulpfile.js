@@ -25,11 +25,11 @@ var minifyhtml = require("gulp-minify-html");
 var buffer = require("vinyl-buffer");
 var source = require("vinyl-source-stream");
 var browserify = require("browserify");
-//var exorcist = require("exorcist");
 var LessPluginCleanCSS = require("less-plugin-clean-css");
 var cleancss = new LessPluginCleanCSS({ advanced: true, verbose: true, debug: true });
 var compress = true;
 var replace = require("gulp-replace");
+var webserver = require("gulp-webserver");
 
 var argv = parseargs(process.argv.slice(2));
 
@@ -64,10 +64,10 @@ var options = {
 	uglify: {
 		compress: {
 			drop_console: true,
-			sequences: true, // join consecutive statemets with the “comma operator”
+			sequences: true, // join consecutive statemets with the ï¿½comma operatorï¿½
 			properties: true, // optimize property access: a["foo"] ? a.foo
 			dead_code: true, // discard unreachable code
-			drop_debugger: true, // discard “debugger” statements
+			drop_debugger: true, // discard ï¿½debuggerï¿½ statements
 			unsafe: false, // some unsafe optimizations (see below)
 			conditionals: true, // optimize if-s and conditional expressions
 			comparisons: true, // optimize comparisons
@@ -152,7 +152,7 @@ if (argv.themes) {
 	
 	lists.css.build = [];
 	for (var u = 0; u < themelist.length; u++)
-		lists.css.build.push("less/themes/" + themelist[u] + "*.less");
+	lists.css.build.push("less/themes/" + themelist[u] + "*.less");
 }
 
 // Script building utility function
@@ -161,8 +161,8 @@ function buildPathArray(prefix, paths) {
 	prefix = prefix || "";
 	
 	for (var u = 0; u < paths.length; u++)
-		list.push(prefix + paths[u]);
-
+	list.push(prefix + paths[u]);
+	
 	return list;
 };
 
@@ -178,7 +178,7 @@ gulp.task("commithash", function(callback) {
 	githash = "12345";
 	callback();
 });
-    
+
 // Set the build output to be uncompressed and unminified
 gulp.task("uncompressed", function() {
 	compress = false;
@@ -213,19 +213,19 @@ gulp.task("clean-all", ["clean-source", "clean-target", "clean-static"]);
 // Copy from source dir to build directory
 gulp.task("copyfrom", ["clean"], function() {
 	return gulp.src(paths.static.source + "**")
-		.pipe(gulp.dest(paths.build.source));
+	.pipe(gulp.dest(paths.build.source));
 });
 
 // Copy static files to build dest directory
 gulp.task("copystatic", function() {
 	return gulp.src(buildPathArray(paths.build.source, paths.copy), { base: paths.build.source })
-		.pipe(gulp.dest(paths.build.target));
+	.pipe(gulp.dest(paths.build.target));
 });
 
 // Copy built files to release directory
 gulp.task("copyto", ["copystatic"], function() {
 	return gulp.src(paths.build.target + "**/*.*", { base: paths.build.target })
-		.pipe(gulp.dest(paths.static.target));
+	.pipe(gulp.dest(paths.static.target));
 });
 
 // Build icon font
@@ -238,14 +238,14 @@ gulp.task("iconfont", function(){
 	.on("glyphs", function(glyphs, options) {
 		// Create the CSS template
 		return gulp.src(paths.build.source + "less/font.less.template")
-			.pipe(consolidate("swig", {
-				glyphs: glyphs,
-				fontName: "iconfont",
-				fontPath: "../fonts/",
-				className: "iconfont"
-			}))
-			.pipe(rename("iconfont.less"))
-			.pipe(gulp.dest(paths.build.source + "less/"));
+		.pipe(consolidate("swig", {
+			glyphs: glyphs,
+			fontName: "iconfont",
+			fontPath: "../fonts/",
+			className: "iconfont"
+		}))
+		.pipe(rename("iconfont.less"))
+		.pipe(gulp.dest(paths.build.source + "less/"));
 	})
 	.pipe(gulp.dest(paths.build.target + "fonts/"));
 });
@@ -253,102 +253,102 @@ gulp.task("iconfont", function(){
 // Compile CSS
 gulp.task("css", function() {
 	return gulp.src(buildPathArray(paths.build.source, lists.css.build))
-		.pipe(foreach(function(stream, file) {
-			var basename = path.basename(file.path, ".less");
-			
-			return gulp.src(buildPathArray(paths.build.source, lists.css.master))
-				.pipe(inject.after("//import \"theme.less\";", "\n@import \"themes/" + basename + "\";"))
-				.pipe(sourcemaps.init({ loadMaps: true, debug: true }))
-				.pipe(less({
-					plugins: [
-					]
-				}))
-				.pipe(rename(basename + ".main.min.css"))
-				.pipe(filesize())
-				.pipe(sourcemaps.write("../maps"))
-				.pipe(gulp.dest(paths.build.target + "css/"));
+	.pipe(foreach(function(stream, file) {
+		var basename = path.basename(file.path, ".less");
+		
+		return gulp.src(buildPathArray(paths.build.source, lists.css.master))
+		.pipe(inject.after("//import \"theme.less\";", "\n@import \"themes/" + basename + "\";"))
+		.pipe(sourcemaps.init({ loadMaps: true, debug: true }))
+		.pipe(less({
+			plugins: [
+			]
 		}))
+		.pipe(rename(basename + ".main.min.css"))
+		.pipe(filesize())
+		.pipe(sourcemaps.write("../maps"))
+		.pipe(gulp.dest(paths.build.target + "css/"));
+	}))
 });
 
 // Copy static html templates
 gulp.task("html", function() {
 	return gulp.src(buildPathArray(paths.build.source, lists.html.build))
-		.pipe(replace(/{{commithash}}/ig, githash))
-		.pipe(replace(/{{fonturl}}/ig, config.fonts))
-		.pipe(filesize())
-		.pipe(gulp.dest(paths.static.targethtml));
+	.pipe(replace(/{{commithash}}/ig, githash))
+	.pipe(replace(/{{fonturl}}/ig, config.fonts))
+	.pipe(filesize())
+	.pipe(gulp.dest(paths.static.targethtml));
 });
 
 // Compile main app partials
 gulp.task("apps-partials", function() {
 	return gulp.src(buildPathArray(paths.build.source, lists.apps.partials))
-		.pipe(foreach(function(stream, file) {
-			if (process.platform === "win32")
-				var pathArray = file.path.split("\\");
-			else
-				var pathArray = file.path.split("/");
-			
-			pathArray.pop();
-			var basename = pathArray.pop();
-			
-			return gulp.src(file.path + "/**/*.html")
-				.pipe(minifyhtml(options.minifiy))
-				.pipe(ngtemplates({
-					module: basename + ".partials",
-					path: function (path, base) {
-						return path.replace(base, "").replace("partials/", "");
-					}
-				}))
-				.pipe(uglify(options.uglify))
-				.pipe(rename("app-partials.js"))
-				.pipe(filesize())
-				.pipe(gulp.dest(paths.build.source + "js/apps/" + basename));
+	.pipe(foreach(function(stream, file) {
+		if (process.platform === "win32")
+		var pathArray = file.path.split("\\");
+		else
+		var pathArray = file.path.split("/");
+		
+		pathArray.pop();
+		var basename = pathArray.pop();
+		
+		return gulp.src(file.path + "/**/*.html")
+		.pipe(minifyhtml(options.minifiy))
+		.pipe(ngtemplates({
+			module: basename + ".partials",
+			path: function (path, base) {
+				return path.replace(base, "").replace("partials/", "");
+			}
 		}))
+		.pipe(uglify(options.uglify))
+		.pipe(rename("app-partials.js"))
+		.pipe(filesize())
+		.pipe(gulp.dest(paths.build.source + "js/apps/" + basename));
+	}))
 });
 
 // Compile app scripts
 gulp.task("apps-scripts", ["apps-partials"], function() {
 	return gulp.src(buildPathArray(paths.build.source, lists.apps.build))
-		.pipe(foreach(function(stream, file) {
-			if (process.platform === "win32")
-				var pathArray = file.path.split("\\");
-			else
-				var pathArray = file.path.split("/");
-
-			pathArray.pop();
-			var basename = pathArray.pop();
-			
-			var bundler = new browserify(options.browserify);
-			bundler.add(file.path);
-			bundler.external("moment");
-
-			return bundler
-				.bundle()
-				.pipe(source(basename + ".min.js"))
-				.pipe(buffer())
-				.pipe(inject.after("gulpBuildVersion = {", "version: '" + package.version + "', commithash: '" + githash + "', release: '" + package.release + "', builddate: new Date(" + JSON.stringify(new Date()) + ")"))
-				.pipe(sourcemaps.init({loadMaps: true}))
-				.pipe(gulpif(compress, uglify(options.uglify)))
-				.pipe(sourcemaps.write("../maps"))
-				//.pipe(exorcist("../maps/test.min.js"))
-				.pipe(gulp.dest(paths.build.target + "js/"));
-		}))
+	.pipe(foreach(function(stream, file) {
+		if (process.platform === "win32")
+		var pathArray = file.path.split("\\");
+		else
+		var pathArray = file.path.split("/");
+		
+		pathArray.pop();
+		var basename = pathArray.pop();
+		
+		var bundler = new browserify(options.browserify);
+		bundler.add(file.path);
+		bundler.external("moment");
+		
+		return bundler
+		.bundle()
+		.pipe(source(basename + ".min.js"))
+		.pipe(buffer())
+		.pipe(inject.after("gulpBuildVersion = {", "version: '" + package.version + "', commithash: '" + githash + "', release: '" + package.release + "', builddate: new Date(" + JSON.stringify(new Date()) + ")"))
+		.pipe(sourcemaps.init({loadMaps: true}))
+		.pipe(gulpif(compress, uglify(options.uglify)))
+		.pipe(sourcemaps.write("../maps"))
+		//.pipe(exorcist("../maps/test.min.js"))
+		.pipe(gulp.dest(paths.build.target + "js/"));
+	}))
 });
 
 // Compile main scripts
 gulp.task("main-scripts", function() {
 	var bundler = new browserify(options.browserify);
-
+	
 	bundler.add(lists.main.build[0]);
-
+	
 	return bundler
-		.bundle()
-		.pipe(source("main.min.js"))
-		.pipe(buffer())
-		.pipe(sourcemaps.init({loadMaps: true}))
-		.pipe(gulpif(compress, uglify(options.uglify)))
-		.pipe(sourcemaps.write("../maps"))
-		.pipe(gulp.dest(paths.build.target + "js/"));
+	.bundle()
+	.pipe(source("main.min.js"))
+	.pipe(buffer())
+	.pipe(sourcemaps.init({loadMaps: true}))
+	.pipe(gulpif(compress, uglify(options.uglify)))
+	.pipe(sourcemaps.write("../maps"))
+	.pipe(gulp.dest(paths.build.target + "js/"));
 });
 
 
@@ -376,6 +376,15 @@ gulp.task("watch", function() {
 	gulp.watch(buildPathArray(paths.static.source, lists.css.watch), ["less"]);
 	gulp.watch(buildPathArray(paths.static.source, lists.main.watch), ["main"]);
 	gulp.watch(buildPathArray(paths.static.source, lists.apps.watch), ["apps"]);
+});
+
+gulp.task("webserver", function() {
+	gulp.src("./").pipe(webserver({
+			livereload: true,
+			directoryListing: true,
+			host: "0.0.0.0",
+			port: "8080"
+		}));
 });
 
 // Present help info

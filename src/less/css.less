@@ -8,25 +8,31 @@ Master CSS file
 
 // LESS files
 @import "reset.less";
-/* This next line is substituted for the theme less file during the build process, do not change! */
-//import "theme.less";
+@import "themes/www.less";
 @import "vars.less";
 @import "mixins.less";
 @import "basics.less";
 @import "navigation.less";
 @import "buttons.less";
-@import "lozenges.less";
-@import "static-iconfont.less";
+@import "iconfont.less";
 @import "icons.less";
 @import "tables.less";
-@import "tables-custom.less";
-@import "tables-list-custom.less";
 @import "lists.less";
 @import "forms.less";
 @import "dialogs.less";
-@import "dialogs-custom.less";
 @import "layouts.less";
 @import "animations.less";
-@import "styleguide.less";
 
-// Third party plugin CSS files
+// Build info
+.about-themes-branch:before {
+	content: "{{themes-branch}}";
+}
+.about-themes-commit:before {
+	content: "{{themes-commit}}";
+}
+.about-barbie-branch:before {
+	content: "{{barbie-branch}}";
+}
+.about-barbie-commit:before {
+	content: "{{barbie-commit}}";
+}

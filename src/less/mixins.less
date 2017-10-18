@@ -28,6 +28,12 @@ Utility mix-ins
 	}
 }
 
+.columnMinWidth(@column, @pixelwidth) {
+	&:nth-child(@{column}) {
+		min-width: @pixelwidth;
+	}
+}
+
 .animation(@name, @duration: 300ms, @timing-function: ease, @delay: 0, @iteration-count: 1, @direction: normal, @fill-mode: forwards, @play-state: running) {
 	-webkit-animation-name: @name;
 	-webkit-animation-duration: @duration;

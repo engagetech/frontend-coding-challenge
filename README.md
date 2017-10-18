@@ -1,4 +1,4 @@
-# AlchemyTec Front End Coding Challenge
+# EngageTech Front End Coding Challenge
 
 ## Overview
 
@@ -26,12 +26,24 @@ For matching the visual aspect of the designs, you can extend the existing `list
 * Mobilise the table for small devices
 * Animate the re-ordering of the table rows
 
+### Things we are looking for
+
+We want this to match the mocks, you'd be amazed (or maybe you wouldn't?) the percentage of submissions in the past that do not. A good eye for detail is important to us.
+
+How you structure and name classes in your style sheets matters. Is there any methodology, is it scaleable? Can it be re-used for other design patterns? Or are you just hacking things together until they look right?
+
+That things work as the requirements describe. It's okay to ask questions if you don't understand something, but going off and doing the wrong thing is not going to fill us with confidence.
+
+If we like the end result, we will want you to talk us through your code and any decisions you made.
+
 
 ## Building the front end
 
 The front end is built using node and a gulp build script. Install the latest version of node.js, and gulp, install the packages with `npm install` and build the static files by running `gulp` in the root directory.
 
 After a succesful build, the `index.html` file should also appear in the root directory, along with a `static` folder containing all the assets.
+
+You can also run `gulp webserver` if you need something to serve the webpage, and `gulp watch` if you want to automatically rebuild when you make changes. Or even combine the two.
 
 
 ## Running the back end

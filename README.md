@@ -2,17 +2,19 @@
 
 ## Overview
 
-This coding challenge should allow you to show off your Angular.js and HTML/CSS abilities. Inside the `design` folder are four images which represent the various states of the table we would like you to build, with data supplied from a REST endpoint.
+This coding challenge should allow you to show off your Angular (version 6 or later) and HTML/CSS abilities. Inside the `design` folder are four images which represent the various states of the table we would like you to build, with data supplied from a REST endpoint.
 
 Two of the images show the initial default view of the data set, with the totals at the bottom of the table, Direct Contractors at the top, and the list of providers sorted alphabetically between them.
 
 The remaining two images show how the table is represented when sorted by columns other than Payroll Provider.
 
-You will need to edit the `src/js/apps/platform/reports/labourcost-controller.js` file to manage the data returned from the REST endpoint, and any interactions you add to the HTML partial, which is `src/js/apps/platform/partials/labourcost-content.html`
+You will need to create an Angular application that displays the data returned from a  REST endpoint provided by the included Java application.
 
-For matching the visual aspect of the designs, you can extend the existing `list-table` class in the `src/less/tables.less` file or create table CSS of your own if you prefer.
+For matching the visual aspect of the designs, you are free to use any CSS styles you like, with any methodology you prefer. The font family should be `Open Sans`.
 
 ### Requirements
+
+The following list contains the minimum requirements for this project:
 
 * The completed page should accurately represent the design templates
 * Clicking the column headings should sort the data from highest to lowest values, or alphabetical as appropriate
@@ -20,6 +22,8 @@ For matching the visual aspect of the designs, you can extend the existing `list
 * When sorting by any other column, Direct Contractors should appear sorted with the provider entries
 
 ### Extra credits
+
+If you fancy doing a little extra, here are some things that might be nice to add:
 
 * Clicking column headings should toggle sorting in forward and backward directions for that column
 * Show the currently sorted column data in a darker colour
@@ -36,17 +40,7 @@ That things work as the requirements describe. It's okay to ask questions if you
 
 If we like the end result, we will want you to talk us through your code and any decisions you made.
 
-
-## Building the front end
-
-The front end is built using node and a gulp build script. Install the latest version of node.js, and gulp, install the packages with `npm install` and build the static files by running `gulp` in the root directory.
-
-After a succesful build, the `index.html` file should also appear in the root directory, along with a `static` folder containing all the assets.
-
-You can also run `gulp webserver` if you need something to serve the webpage, and `gulp watch` if you want to automatically rebuild when you make changes. Or even combine the two.
-
-
-## Running the back end
+### Running the back end
 
 The back end requires Java 8, and can be run from the `backend` directory with the command `./run.sh`
 

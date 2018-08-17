@@ -1,5 +1,11 @@
 # EngageTech Front End Coding Challenge
 
+## Who is this for?
+
+Occasionally we get to speak with wonderful engineers that would be a great addition to our super nice team. When this happens, we want to give them the chance to show what they can do, so we share this challenge with them.
+
+We are not looking for random coding submissions, if you found this repository by yourself and just want to give it a go, that's fine, enjoy! But we probably won't be able to find the time to review it, or take things further.
+
 ## Overview
 
 This coding challenge should allow you to show off your Angular (version 6 or later) and HTML/CSS abilities. Inside the `design` folder are four images which represent the various states of the table we would like you to build, with data supplied from a REST endpoint.
@@ -11,6 +17,8 @@ The remaining two images show how the table is represented when sorted by column
 You will need to create an Angular application that displays the data returned from a  REST endpoint provided by the included Java application.
 
 For matching the visual aspect of the designs, you are free to use any CSS styles you like, with any methodology you prefer. The font family should be `Open Sans`.
+
+We are not looking for extensive browser support, providing it works in recent versions of Chrome and Firefox, that's fine!
 
 ### Requirements
 
@@ -36,7 +44,7 @@ We want this to match the mocks, you'd be amazed (or maybe you wouldn't?) the pe
 
 How you structure and name classes in your style sheets matters. Is there any methodology, is it scaleable? Can it be re-used for other design patterns? Or are you just hacking things together until they look right?
 
-That things work as the requirements describe. It's okay to ask questions if you don't understand something, but going off and doing the wrong thing is not going to fill us with confidence.
+That things work as the requirements describe. It's okay to ask questions if you don't understand something, we collaborate regularly with other engineers, designers and product managers and always encourage discussions.
 
 If we like the end result, we will want you to talk us through your code and any decisions you made.
 

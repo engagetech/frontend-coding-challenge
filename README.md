@@ -50,25 +50,10 @@ If we like the end result, we will want you to talk us through your code and any
 
 ## Running the back end
 
-There are two backend services. One in Java and the other in Node.js. You are to choose and use one or the other.
-
-### Running the Java back end
-The back end requires Java 8, and can be run from the `backend` directory with the command `./run.sh`
-
-If it launches correctly you should see the following in the console:
-
-`INFO  [2015-10-29 13:17:10,166] org.eclipse.jetty.server.Server: Started @2126ms`
-
-This should expose an endpoint on the following URL:
-`http://localhost:6502/application/labourstats`
-
-Authentication is not required, and we don't expect you to add any!
-
-### Running the Node.js back end
-The backend can be run from the `node-backend` directory by following these steps
-1. open a terminal from the `node-backend` directory
+The back end service can be run from the `backend` directory by following these steps
+1. open a terminal from the `backend` directory
 2. run  `npm install` to install the dependencies required to run the back end service
-3. after successful installations, run `npm run dev`, the starts the back end service.
+3. after successful packages installation, run `npm run dev`, the starts the back end service.
 
 If it launches correctly you should see the following in the console:
 

@@ -48,8 +48,11 @@ That things work as the requirements describe. It's okay to ask questions if you
 
 If we like the end result, we will want you to talk us through your code and any decisions you made.
 
-### Running the back end
+## Running the back end
 
+There are two backend services. One in Java and the other in Node.js. You are to choose and use one or the other.
+
+### Running the Java back end
 The back end requires Java 8, and can be run from the `backend` directory with the command `./run.sh`
 
 If it launches correctly you should see the following in the console:
@@ -58,5 +61,29 @@ If it launches correctly you should see the following in the console:
 
 This should expose an endpoint on the following URL:
 `http://localhost:6502/application/labourstats`
+
+Authentication is not required, and we don't expect you to add any!
+
+### Running the Node.js back end
+The backend can be run from the `node-backend` directory by following these steps
+1. open a terminal from the `node-backend` directory
+2. run  `npm install` to install the dependencies required to run the back end service
+3. after successful installations, run `npm run dev`, the starts the back end service.
+
+If it launches correctly you should see the following in the console:
+
+```
+  > node-backend@1.0.0 dev
+  > nodemon
+  [nodemon] 2.0.18
+  [nodemon] to restart at any time, enter `rs`
+  [nodemon] watching path(s): src/**/*
+  [nodemon] watching extensions: ts
+  [nodemon] starting `ts-node src/server/server.ts`
+  Server listening on port 6502
+```
+
+This should expose an endpoint on the following URL:
+`http://localhost:6502/application`
 
 Authentication is not required, and we don't expect you to add any!

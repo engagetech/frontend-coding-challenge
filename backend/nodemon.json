@@ -1,0 +1,8 @@
+{
+  "watch": ["src"],
+  "watchOptions": {
+    "ignored": "node_modules"
+  },
+  "ext": ".ts",
+  "exec": "ts-node src/server/server.ts"
+}

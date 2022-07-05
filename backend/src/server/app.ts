@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/application', async (req, res, next) => {
-  res.status(200).json(data[0].total);
+  res.status(200).json(data[0]);
 });
 
 export default app;

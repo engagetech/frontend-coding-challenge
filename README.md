@@ -52,7 +52,7 @@ If we like the end result, we will want you to talk us through your code and any
 
 The back end service can be run from the `backend` directory by following these steps
 1. open a terminal from the `backend` directory
-2. run  `npm install` to install the dependencies required to run the back end service
+2. run  `npm ci` to install the dependencies required to run the back end service
 3. after successful packages installation, run `npm run dev`, the starts the back end service.
 
 If it launches correctly you should see the following in the console:

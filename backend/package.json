@@ -1,7 +1,7 @@
 {
   "name": "node-backend",
   "version": "1.0.0",
-  "description": "Node runtime environment for frontend test",
+  "description": "Node runtime environment for frontend coding challenge",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon"

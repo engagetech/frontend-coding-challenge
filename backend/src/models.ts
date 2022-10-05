@@ -1,7 +1,7 @@
 
-export type Data = Record<'providers' | 'directContractors' | 'total', DataInterface[]>;
+export type LabourCosts = Record<'providers' | 'directContractors' | 'total', LabourStats[]>;
 
-export interface DataInterface {
+export interface LabourStats {
   rebatesTotal: number;
   grossPayTotal: number;
   workerCount: number;
@@ -21,6 +21,5 @@ export interface ComplianceStats {
   RightToWork: number;
   OpsChecked: number;
   Contract: number;
-  EmpStatusReviewnumber?: number;
-  EmpStatusReview?: number;
+  EmpStatusReview: number;
 }

@@ -1,6 +1,6 @@
-import { Data } from "./interface";
+import { LabourCosts } from "./models";
 
-export const data: Data[] = [{
+export const labourCosts: LabourCosts[] = [{
   "providers": [
     {
       "rebatesTotal": 0,

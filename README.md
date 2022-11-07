@@ -48,6 +48,10 @@ That things work as the requirements describe. It's okay to ask questions if you
 
 If we like the end result, we will want you to talk us through your code and any decisions you made.
 
+### Sending us the result
+
+Once your solution is ready, you can either create your own GitHub repository and send us the link or simply email us a zip file containing all the necessary files.
+
 ## Running the back end
 
 The back end service can be run from the `backend` directory by following these steps
